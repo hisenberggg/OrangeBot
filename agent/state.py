@@ -1,0 +1,14 @@
+"""Shared state typings for Planner and downstream agents."""
+from typing import Literal, Optional, TypedDict
+
+from langchain_core.messages import BaseMessage
+
+Route = Literal["wiki", "calendar", "general"]
+
+
+class AgentState(TypedDict, total=False):
+    """State passed through the Planner and into specialized agents."""
+
+    messages: list[BaseMessage]
+    route: Route
+    final_response: str
