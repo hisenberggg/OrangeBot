@@ -54,6 +54,11 @@ DEFAULT_TOP_K = _int("DEFAULT_TOP_K", 10)
 CHUNK_MAX_WORDS = _int("CHUNK_MAX_WORDS", 1200)
 CHUNK_MIN_WORDS = _int("CHUNK_MIN_WORDS", 500)
 
+# Wiki RAG: pre-indexed vector store
+EMBEDDING_MODEL = _str("EMBEDDING_MODEL", "text-embedding-3-small")
+VECTOR_STORE_PATH = _str("VECTOR_STORE_PATH", "").strip() or None
+WIKI_USE_SEMANTIC_RETRIEVE = _bool("WIKI_USE_SEMANTIC_RETRIEVE", True)
+
 # MCP server (for LangGraph spawning wiki MCP via stdio)
 WIKI_MCP_COMMAND = _str("WIKI_MCP_COMMAND", "python")
 WIKI_MCP_ARGS = _str("WIKI_MCP_ARGS", "-m,mcp_servers.wiki.server")
@@ -73,6 +78,9 @@ class _Settings:
     chunk_min_words = CHUNK_MIN_WORDS
     wiki_mcp_command = WIKI_MCP_COMMAND
     wiki_mcp_args = tuple(WIKI_MCP_ARGS.split(",")) if WIKI_MCP_ARGS else ("-m", "mcp_servers.wiki.server")
+    embedding_model = EMBEDDING_MODEL
+    vector_store_path = VECTOR_STORE_PATH
+    wiki_use_semantic_retrieve = WIKI_USE_SEMANTIC_RETRIEVE
 
 
 settings = _Settings()

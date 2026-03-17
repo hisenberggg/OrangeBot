@@ -5,10 +5,10 @@ One-stop chat interface for university questions using Agentic RAG: a **Planner*
 ## Architecture
 
 - **Planner** — Classifies the question and routes to `wiki`, `calendar`, or `general`.
-- **Wiki agent** — Uses the wiki MCP tools (`answers_search_cql`, `answers_fetch_page`, `answers_retrieve`) to answer with citations.
-- **Wiki MCP** — Confluence REST client: CQL search, fetch page, and retrieve (search + fetch + heading-based chunking).
+- **Wiki agent** — Uses the wiki MCP tool `answers_retrieve` to answer with citations.
+- **Wiki MCP** — Confluence REST client plus a pre-indexed semantic retrieve path (Chroma + embeddings). When the vector index is built, `answers_retrieve` uses fast semantic search over local chunks and returns evidence snippets; optionally it can fall back to CQL + fetch + chunk when no index data is available.
 
-All configuration (API keys, Confluence URL, limits) is loaded from `.env`; see `.env.example`.
+All configuration (API keys, Confluence URL, limits, embedding model, vector store path) is loaded from `.env`; see `.env.example`.
 
 ## Setup
 
@@ -47,6 +47,8 @@ All configuration (API keys, Confluence URL, limits) is loaded from `.env`; see 
 
    Optional: override `CONFLUENCE_BASE_URL`, `DEFAULT_SEARCH_LIMIT`, `DEFAULT_TOP_K` if needed.
 
+   **Wiki RAG (pre-indexed retrieval):** For fast semantic search, set `VECTOR_STORE_PATH` (e.g. `./data/wiki_chroma`) and run the indexer once (or on a schedule). See **Wiki indexer** below.
+
    **LangSmith (optional):** To trace Planner and Wiki agent runs in [LangSmith](https://smith.langchain.com), set in `.env`:
    - `LANGCHAIN_TRACING_V2=true` (must be lowercase `true`)
    - `LANGCHAIN_API_KEY=<your key from smith.langchain.com>`
@@ -59,7 +61,18 @@ All configuration (API keys, Confluence URL, limits) is loaded from `.env`; see 
    python -m mcp_servers.wiki.server
    ```
 
-4. **Run the Chat API**
+4. **Wiki indexer (for pre-indexed RAG)**
+
+   To build the vector index so `answers_retrieve` uses fast semantic search instead of live CQL + fetch:
+
+   - Set `VECTOR_STORE_PATH` in `.env` (e.g. `VECTOR_STORE_PATH=./data/wiki_chroma`).
+   - Run the indexer (requires `OPENAI_API_KEY`):
+     ```bash
+     python -m mcp_servers.wiki.indexer
+     ```
+   - Run the indexer periodically (e.g. cron) to refresh the index. Use `--incremental` to append without clearing (optional).
+
+5. **Run the Chat API**
 
    With the venv activated, from the project root:
    ```bash
@@ -73,13 +86,13 @@ All configuration (API keys, Confluence URL, limits) is loaded from `.env`; see 
 
 - `config/` — Central config (`.env` + `config/settings.py`).
 - `agent/` — LangGraph: `planner.py` (Planner), `wiki_agent.py` (Wiki sub-graph with MCP tools), `state.py`.
-- `mcp_servers/wiki/` — Confluence client, chunker, FastMCP server with three tools.
+- `mcp_servers/wiki/` — Confluence client, chunker, vector store (Chroma), indexer, FastMCP server with the `answers_retrieve` tool.
 - `api/` — FastAPI chat endpoint.
 
 ## Implementation order (from plan)
 
 1. Central config (`.env`, `.env.example`, `config/settings.py`)
 2. Planner agent (route → wiki | calendar | general)
-3. Wiki MCP (answers_search_cql, answers_fetch_page, answers_retrieve)
-4. Wiki agent (ReAct + wiki MCP tools, cited answers)
+3. Wiki MCP (`answers_retrieve` semantic retrieve)
+4. Wiki agent (ReAct + wiki MCP tool, cited answers)
 5. Chat API (Planner + Wiki wired, POST /chat)

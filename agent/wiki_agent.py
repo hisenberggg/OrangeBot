@@ -11,7 +11,7 @@ from langgraph.prebuilt import create_react_agent
 
 from config import settings
 
-WIKI_SYSTEM_PROMPT = """You are a helpful assistant for Syracuse University. Use the Answers wiki tools to find up-to-date information about procedures, policies, and how-to topics. When you use answers_retrieve or answers_search_cql, cite the sources (page title and section) in your answer. If you cannot find relevant information, say so clearly."""
+WIKI_SYSTEM_PROMPT = """You are a helpful assistant for Syracuse University. Use the Answers wiki tool to find up-to-date information about procedures, policies, and how-to topics. Call answers_retrieve to obtain evidence snippets from the pre-indexed Answers wiki (page title, section, and snippet text), and cite those sources in your answer. If you cannot find relevant information, say so clearly."""
 
 
 async def _get_wiki_tools():

@@ -14,6 +14,39 @@ def _base() -> str:
     return wiki_config.CONFLUENCE_BASE_URL.rstrip("/")
 
 
+def list_pages(limit: int = 25, start: int = 0) -> dict[str, Any]:
+    """
+    List Confluence pages (type=page) with pagination. Use for indexing.
+    Returns results and total size; use start+limit for next page.
+    """
+    url = f"{_base()}?type=page&limit={limit}&start={start}&expand=version,space,_links"
+    with httpx.Client(timeout=60.0) as client:
+        resp = client.get(url)
+        resp.raise_for_status()
+        data = resp.json()
+    results = []
+    for item in data.get("results", []):
+        version = item.get("version") or {}
+        space = item.get("space") or {}
+        links = item.get("_links") or {}
+        webui = links.get("webui") or ""
+        if isinstance(webui, dict):
+            webui = webui.get("href") or webui.get("url") or ""
+        results.append({
+            "id": item.get("id"),
+            "title": item.get("title"),
+            "spaceKey": space.get("key"),
+            "spaceName": space.get("name"),
+            "updated": version.get("when"),
+            "webuiUrl": webui,
+        })
+    return {
+        "results": results,
+        "size": data.get("size", len(results)),
+        "next_start": start + len(results) if len(results) >= limit else None,
+    }
+
+
 def search_cql(
     query: str,
     limit: int = 5,
