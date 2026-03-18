@@ -1,0 +1,151 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  z-index: 100;
+  transition: transform 0.2s ease;
+}
+
+.collapsed {
+  transform: translateX(calc(-1 * var(--sidebar-width)));
+}
+
+.overlay {
+  display: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--su-orange);
+  letter-spacing: -0.3px;
+}
+
+.closeBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.closeBtn:hover {
+  background: var(--border);
+}
+
+.toggleBtn {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text);
+  line-height: 1;
+}
+.toggleBtn:hover {
+  background: var(--bg-secondary);
+}
+
+.newChat {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--su-orange);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.15s;
+}
+.newChat:hover {
+  background: var(--su-orange-hover);
+}
+
+.sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.sessionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  transition: background 0.12s;
+}
+.sessionItem:hover {
+  background: var(--border-light);
+}
+.sessionItem.active {
+  background: var(--su-orange-light);
+  font-weight: 600;
+}
+
+.sessionTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.sessionDate {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Responsive: narrow viewports */
+@media (max-width: 768px) {
+  .toggleBtn {
+    display: flex;
+  }
+  .closeBtn {
+    display: block;
+  }
+  .sidebar {
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 90;
+  }
+}
