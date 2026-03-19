@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import ChatWindow from "@/components/ChatWindow";
-import { sendMessage } from "@/lib/chatClient";
-import type { ChatSession, Message } from "@/lib/types";
+import { streamMessage } from "@/lib/chatClient";
+import type { ChatSession, Message, ThinkingEvent } from "@/lib/types";
 import styles from "./page.module.css";
 
 let _counter = 0;
@@ -30,6 +30,12 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mounted, setMounted] = useState(false);
+
+  const [streamingThinkingSteps, setStreamingThinkingSteps] = useState<ThinkingEvent[]>([]);
+  const [streamingContent, setStreamingContent] = useState("");
+
+  const thinkingRef = useRef<ThinkingEvent[]>([]);
+  const contentRef = useRef("");
 
   useEffect(() => {
     const s = createSession();
@@ -82,22 +88,47 @@ export default function Home() {
 
       setIsLoading(true);
       setError(null);
+      setStreamingThinkingSteps([]);
+      setStreamingContent("");
+      thinkingRef.current = [];
+      contentRef.current = "";
+
+      const sessionId = activeSession.id;
 
       try {
-        const data = await sendMessage(text);
+        await streamMessage(text, {
+          onThinking: (event) => {
+            thinkingRef.current = [...thinkingRef.current, event];
+            setStreamingThinkingSteps([...thinkingRef.current]);
+          },
+          onDelta: (content) => {
+            contentRef.current += content;
+            setStreamingContent(contentRef.current);
+          },
+          onError: (message) => {
+            setError(message);
+          },
+          onDone: (response, route) => {
+            const assistantMsg: Message = {
+              id: uid(),
+              role: "assistant",
+              content: response,
+              timestamp: new Date().toISOString(),
+              thinkingSteps: thinkingRef.current,
+            };
 
-        const assistantMsg: Message = {
-          id: uid(),
-          role: "assistant",
-          content: data.response,
-          timestamp: new Date().toISOString(),
-        };
+            updateSession(sessionId, (s) => ({
+              ...s,
+              route: route ?? s.route,
+              messages: [...s.messages, assistantMsg],
+            }));
 
-        updateSession(activeSession.id, (s) => ({
-          ...s,
-          route: data.route ?? s.route,
-          messages: [...s.messages, assistantMsg],
-        }));
+            setStreamingThinkingSteps([]);
+            setStreamingContent("");
+            thinkingRef.current = [];
+            contentRef.current = "";
+          },
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
       } finally {
@@ -132,6 +163,8 @@ export default function Home() {
           error={error}
           route={activeSession?.route ?? null}
           onDismissError={() => setError(null)}
+          streamingThinkingSteps={streamingThinkingSteps}
+          streamingContent={streamingContent}
         />
       </main>
     </div>

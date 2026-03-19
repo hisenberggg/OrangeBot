@@ -11,4 +11,5 @@ class AgentState(TypedDict, total=False):
 
     messages: list[BaseMessage]
     route: Route
+    route_rationale: str
     final_response: str

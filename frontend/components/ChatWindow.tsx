@@ -2,7 +2,8 @@
 
 import { useRef, useEffect, useState, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import type { Message } from "@/lib/types";
+import type { Message, ThinkingEvent } from "@/lib/types";
+import ThinkingSteps from "./ThinkingSteps";
 import styles from "./ChatWindow.module.css";
 
 interface ChatWindowProps {
@@ -12,6 +13,8 @@ interface ChatWindowProps {
   error: string | null;
   route: string | null;
   onDismissError: () => void;
+  streamingThinkingSteps: ThinkingEvent[];
+  streamingContent: string;
 }
 
 export default function ChatWindow({
@@ -21,6 +24,8 @@ export default function ChatWindow({
   error,
   route,
   onDismissError,
+  streamingThinkingSteps,
+  streamingContent,
 }: ChatWindowProps) {
   const [draft, setDraft] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -28,7 +33,7 @@ export default function ChatWindow({
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+  }, [messages, isLoading, streamingContent, streamingThinkingSteps]);
 
   useEffect(() => {
     if (!isLoading) textareaRef.current?.focus();
@@ -57,6 +62,7 @@ export default function ChatWindow({
   };
 
   const empty = messages.length === 0 && !isLoading;
+  const hasStreamingContent = streamingContent.length > 0;
 
   return (
     <div className={styles.container}>
@@ -95,6 +101,9 @@ export default function ChatWindow({
               m.role === "user" ? styles.user : styles.assistant
             }`}
           >
+            {m.role === "assistant" && m.thinkingSteps && m.thinkingSteps.length > 0 && (
+              <ThinkingSteps steps={m.thinkingSteps} streaming={false} />
+            )}
             {m.role === "assistant" && (
               <span className={styles.label}>Answers</span>
             )}
@@ -116,12 +125,22 @@ export default function ChatWindow({
 
         {isLoading && (
           <div className={`${styles.bubble} ${styles.assistant}`}>
+            {streamingThinkingSteps.length > 0 && (
+              <ThinkingSteps steps={streamingThinkingSteps} streaming={true} />
+            )}
             <span className={styles.label}>Answers</span>
-            <div className={styles.thinking}>
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-            </div>
+            {hasStreamingContent ? (
+              <div className={styles.bubbleContent}>
+                <span>{streamingContent}</span>
+                <span className={styles.cursor}>|</span>
+              </div>
+            ) : (
+              <div className={styles.thinking}>
+                <span className={styles.dot} />
+                <span className={styles.dot} />
+                <span className={styles.dot} />
+              </div>
+            )}
           </div>
         )}
 

@@ -11,10 +11,12 @@ try:
 except ImportError:
     pass
 
-from typing import Any
+import json
+from typing import Any, AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from langchain_core.messages import HumanMessage
 from pydantic import BaseModel, Field
 
@@ -63,6 +65,81 @@ async def chat(req: ChatRequest) -> ChatResponse:
     final = state.get("final_response") or "I couldn't process that. Please try again."
     route = state.get("route") if req.include_route else None
     return ChatResponse(response=final, route=route)
+
+
+def _sse(event: str, data: dict) -> str:
+    return f"event: {event}\ndata: {json.dumps(data)}\n\n"
+
+
+async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
+    """Run the planner graph and yield SSE events for thinking steps + response tokens."""
+    graph = await _get_planner_graph()
+    past_routing = False
+    accumulated = ""
+    route_value: str | None = None
+
+    yield _sse("thinking", {"type": "status", "message": "Deciding route..."})
+
+    try:
+        async for event in graph.astream_events(
+            {"messages": [HumanMessage(content=message)]},
+            version="v2",
+        ):
+            kind = event.get("event", "")
+            name = event.get("name", "")
+
+            if kind == "on_chain_end" and name == "route":
+                output = event.get("data", {}).get("output", {})
+                route_value = output.get("route", "general")
+                rationale = output.get("route_rationale", "")
+                past_routing = True
+                yield _sse("thinking", {
+                    "type": "route",
+                    "route": route_value,
+                    "rationale": rationale,
+                })
+                label = {
+                    "wiki": "Searching Answers wiki...",
+                    "calendar": "Checking academic calendar...",
+                    "general": "Generating response...",
+                }.get(route_value, "Processing...")
+                yield _sse("thinking", {"type": "status", "message": label})
+
+            elif kind == "on_tool_start" and past_routing:
+                tool_input = event.get("data", {}).get("input", {})
+                query = tool_input.get("query", str(tool_input)) if isinstance(tool_input, dict) else str(tool_input)
+                yield _sse("thinking", {
+                    "type": "tool_call",
+                    "tool": name,
+                    "input": query[:200],
+                })
+
+            elif kind == "on_chat_model_stream" and past_routing:
+                chunk = event.get("data", {}).get("chunk")
+                if chunk and hasattr(chunk, "content") and chunk.content:
+                    accumulated += chunk.content
+                    yield _sse("delta", {"content": chunk.content})
+
+            elif kind == "on_chain_end" and name in ("wiki", "calendar", "general"):
+                output = event.get("data", {}).get("output", {})
+                final = output.get("final_response") or accumulated
+                yield _sse("done", {"response": final, "route": route_value})
+
+    except Exception as exc:
+        yield _sse("error", {"message": str(exc)})
+
+
+@app.post("/chat/stream")
+async def chat_stream(req: ChatRequest):
+    """SSE streaming endpoint: emits thinking steps + response tokens."""
+    return StreamingResponse(
+        _stream_graph(req.message),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 @app.get("/health")

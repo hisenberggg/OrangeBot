@@ -50,7 +50,7 @@ def _route_node(state: AgentState) -> AgentState:
         ]
     )
     route: Route = response.route or "general"
-    return {**state, "route": route}
+    return {**state, "route": route, "route_rationale": response.rationale or ""}
 
 
 def _general_node(state: AgentState) -> AgentState:
