@@ -77,6 +77,8 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
     past_routing = False
     accumulated = ""
     route_value: str | None = None
+    wiki_tool_calls = 0
+    has_streamed_response = False
 
     yield _sse("thinking", {"type": "status", "message": "Deciding route..."})
 
@@ -87,6 +89,7 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
         ):
             kind = event.get("event", "")
             name = event.get("name", "")
+            tags = event.get("tags") or []
 
             if kind == "on_chain_end" and name == "route":
                 output = event.get("data", {}).get("output", {})
@@ -109,6 +112,17 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
             elif kind == "on_tool_start" and past_routing:
                 tool_input = event.get("data", {}).get("input", {})
                 query = tool_input.get("query", str(tool_input)) if isinstance(tool_input, dict) else str(tool_input)
+
+                if route_value == "wiki":
+                    wiki_tool_calls += 1
+                    if wiki_tool_calls > 1 and has_streamed_response:
+                        accumulated = ""
+                        has_streamed_response = False
+                        yield _sse("thinking", {
+                            "type": "status",
+                            "message": f"Evaluating response... retrying with different search (attempt {wiki_tool_calls})...",
+                        })
+
                 yield _sse("thinking", {
                     "type": "tool_call",
                     "tool": name,
@@ -116,9 +130,12 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
                 })
 
             elif kind == "on_chat_model_stream" and past_routing:
+                if "wiki_evaluator" in tags:
+                    continue
                 chunk = event.get("data", {}).get("chunk")
                 if chunk and hasattr(chunk, "content") and chunk.content:
                     accumulated += chunk.content
+                    has_streamed_response = True
                     yield _sse("delta", {"content": chunk.content})
 
             elif kind == "on_chain_end" and name in ("wiki", "calendar", "general", "transit"):

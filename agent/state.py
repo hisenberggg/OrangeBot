@@ -13,3 +13,5 @@ class AgentState(TypedDict, total=False):
     route: Route
     route_rationale: str
     final_response: str
+    wiki_hops: int
+    wiki_eval_reasoning: str
