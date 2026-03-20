@@ -17,7 +17,7 @@ ROUTING_PROMPT = """You are a router for a university help assistant. Classify t
 Routes:
 - wiki: Procedures, how-to, policy, or meaning (e.g. "How do I drop a course?", "What happens after I drop?", "What is add/drop?")
 - calendar: Exact dates or academic calendar (e.g. "When is add/drop deadline for spring 2026?", "What is the last day to add a class?")
-- general: Unclear, out of scope, or greeting (e.g. "Hi", "What can you do?"). Use for polite fallback.
+- general: Greetings, general knowledge, off-topic, or anything not covered by wiki/calendar routes (e.g. "Hi", "What can you do?", "Tell me about Syracuse University").
 
 Respond with only the route: wiki, calendar, or general."""
 
@@ -53,12 +53,32 @@ def _route_node(state: AgentState) -> AgentState:
     return {**state, "route": route, "route_rationale": response.rationale or ""}
 
 
-def _general_node(state: AgentState) -> AgentState:
-    """Fallback when route is general."""
-    return {
-        **state,
-        "final_response": "I can help with Syracuse University topics: academic calendar dates and Answers wiki (procedures, how-to, policies). What would you like to know?",
-    }
+GENERAL_SYSTEM_PROMPT = """You are a helpful Syracuse University assistant. Answer the user's question to the best of your ability. You specialize in Syracuse University topics and have access to an Answers wiki for procedures and policies. If the question is a greeting, respond warmly and mention what you can help with. If the question is completely off-topic, politely redirect.
+
+When relevant, include links to well-known Syracuse University resources you are confident about, such as:
+- Syracuse University homepage: https://www.syracuse.edu
+- MySlice student portal: https://myslice.syr.edu
+- SU Answers wiki: https://answers.atlassian.syr.edu/wiki
+- Financial Aid: https://www.syracuse.edu/admissions-aid/financial-aid/
+- Registrar: https://www.syracuse.edu/academics/registrar/
+- Campus directory: https://www.syracuse.edu/directory/
+Only include links you are confident are correct. Do not guess or fabricate URLs."""
+
+
+async def _general_node(state: AgentState) -> AgentState:
+    """General-purpose node: calls the LLM to answer greetings, general knowledge, and off-topic questions."""
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        api_key=settings.openai_api_key or None,
+        temperature=0.3,
+    )
+    messages = state.get("messages") or []
+    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
+    response = await llm.ainvoke([
+        SystemMessage(content=GENERAL_SYSTEM_PROMPT),
+        HumanMessage(content=user_content),
+    ])
+    return {**state, "final_response": response.content}
 
 
 def _calendar_placeholder_node(state: AgentState) -> AgentState:
