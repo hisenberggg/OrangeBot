@@ -1,0 +1,1955 @@
+{
+  "scraped_at": "2026-03-20T03:11:03.325125+00:00",
+  "calendars": {
+    "academic_year": [
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Registration for Winterlude",
+        "date": "Wednesday, Nov. 5 - Thursday, Dec. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude begins",
+        "date": "Wednesday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude add deadline",
+        "date": "Thursday, Dec. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude pass/fail deadline",
+        "date": "Monday, Dec. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude academic/financial drop deadline",
+        "date": "Monday, Dec. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude withdrawal deadline",
+        "date": "Monday, Jan. 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude ends",
+        "date": "Friday, Jan. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Winterlude grades due from faculty",
+        "date": "Tuesday, Jan. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2026 (Spring Session)",
+        "event": "Martin Luther King Jr. Day (no residential classes, University offices closed)",
+        "date": "Monday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Registration for new graduate students",
+        "date": "Monday, Jan. 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 10 - Sunday, Jan. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "First day of classes",
+        "date": "Monday, Jan. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Late registration and schedule adjustment",
+        "date": "Monday, Jan. 12 - Tuesday, Jan. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Martin Luther King Jr. Day (no residential classes, University offices closed)",
+        "date": "Monday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Add deadline",
+        "date": "Tuesday, Jan. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Early-semester progress report",
+        "date": "Monday, Jan. 26 - Friday, Jan. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Academic/Financial deadline to drop class",
+        "date": "Monday, Feb. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Grading option deadline (choose pass/fail or audit)",
+        "date": "Monday, Feb. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Religious Observance Notification Deadline",
+        "date": "Monday, Feb. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Midterm",
+        "date": "Monday, Mar. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Mid-semester progress report",
+        "date": "Tuesday, Mar. 3 - Tuesday, Mar. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Spring Break (no residential classes)",
+        "date": "Sunday, Mar. 8 - Sunday, Mar. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Registration for Summer 2026",
+        "date": "Wednesday, Mar. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Registration for Fall 2026",
+        "date": "Wednesday, Apr. 8 - Tuesday, Jun. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Withdrawal deadline",
+        "date": "Tuesday, Apr. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Reading days",
+        "date": "Tuesday, Apr. 28 - Wednesday, Apr. 29, Saturday, May 2 - Sunday, May 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Final examinations",
+        "date": "Thursday, Apr. 30 - Friday, May 1, Monday, May 4, Tuesday, May 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Last day of the Semester",
+        "date": "Tuesday, May 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Commencement Weekend",
+        "date": "Saturday, May 9 - Sunday, May 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Degree Award Date",
+        "date": "Sunday, May 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2026",
+        "event": "Final grades due from faculty",
+        "date": "Monday, May 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Maymester",
+        "date": "Monday, May 11 - Friday, May 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 11 - Friday, Aug. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Six Week First Session",
+        "date": "Monday, May 18 - Friday, Jun. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 18 - Friday, Aug. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Memorial Day (no residential classes, University offices closed)",
+        "date": "Monday, May 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Maymester final grades due from faculty",
+        "date": "Thursday, Jun. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Mid-semester progress report Six Week First Session",
+        "date": "Friday, Jun. 5 - Wednesday, Jun. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Juneteenth (no residential classes, University offices closed)",
+        "date": "Friday, Jun. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Degree Award Date",
+        "date": "Friday, Jun. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Mid-semester progress report Twelve Week Session",
+        "date": "Friday, Jun. 26 - Monday, Jul. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jun. 29 - Friday, Aug. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Mid-semester progress report Regular Academic Session",
+        "date": "Wednesday, Jul. 1 - Wednesday, Jul. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Independence Day (no residential classes, University offices closed)",
+        "date": "Friday, Jul. 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Six Week First Session final grades due from faculty",
+        "date": "Thursday, Jul. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Mid-semester progress report Six Week Second Session",
+        "date": "Friday, Jul. 17 - Wednesday, Jul. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Six Week Second Session and Twelve Week Session final grades due from faculty",
+        "date": "Thursday, Aug. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Regular Academic Session final grades due from faculty",
+        "date": "Thursday, Aug. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2026",
+        "event": "Degree Award Date",
+        "date": "Friday, Aug. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Registration for new graduate students",
+        "date": "Monday, Aug. 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Schedule adjustment for returning undergraduate students",
+        "date": "Wednesday, Aug. 12 - Monday, Aug. 31",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Syracuse Welcome",
+        "date": "Saturday, Aug. 22 - Sunday, Aug. 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "First day of classes/Extended Campus Classes",
+        "date": "Monday, Aug. 24",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Late registration and schedule adjustment",
+        "date": "Monday, Aug. 24 - Monday, Aug. 31",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Add deadline",
+        "date": "Monday, Aug. 31",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Labor Day (no residential classes, University offices closed)",
+        "date": "Monday, Sept. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Early-semester progress report",
+        "date": "Tuesday, Sept. 8 - Friday, Sept. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Academic/Financial deadline to drop class",
+        "date": "Monday, Sept. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Grading option deadline (choose pass/fail or audit)",
+        "date": "Monday, Sept. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Religious observance notification deadline",
+        "date": "Monday, Sept. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Fall Break, excluding LAW (no residential classes)",
+        "date": "Monday, Oct. 12 - Tuesday, Oct. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Mid-semester progress report",
+        "date": "Thursday, Oct. 15 - Thursday, Oct. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Registration for Winterlude",
+        "date": "Tuesday, Nov. 10 - Thursday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Registration for Spring 2027",
+        "date": "Tuesday, Nov. 10 - Tuesday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Withdrawal deadline",
+        "date": "Friday, Nov. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Thanksgiving Break (no residential classes, University offices open Monday through Wednesday)",
+        "date": "Sunday, Nov. 22 - Sunday, Nov. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 9, Saturday, Dec. 12, Sunday, Dec. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 10 - Friday, Dec. 11, Monday, Dec. 14 - Tuesday, Dec. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Last day of the semester",
+        "date": "Tuesday, Dec. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Degree Award Date",
+        "date": "Wednesday, Dec. 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Fall 2026",
+        "event": "Final grades due from faculty",
+        "date": "Wednesday, Dec. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Registration for Winterlude",
+        "date": "Tuesday, Nov. 10 - Thursday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude begins",
+        "date": "Wednesday, Dec. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude add deadline",
+        "date": "Thursday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude pass/fail deadline",
+        "date": "Monday, Dec. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude academic/financial drop deadline",
+        "date": "Monday, Dec. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude withdrawal deadline",
+        "date": "Monday, Jan. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude ends",
+        "date": "Friday, Jan. 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Winterlude 2027 (Spring Session)",
+        "event": "Winterlude grades due from faculty",
+        "date": "Tuesday, Jan. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Registration for new graduate students",
+        "date": "Monday, Jan. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 9 - Sunday, Jan. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "First day of classes",
+        "date": "Monday, Jan. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Late registration and schedule adjustment",
+        "date": "Monday, Jan. 11 - Tuesday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Martin Luther King Jr. Day (no residential classes, University offices closed)",
+        "date": "Monday, Jan. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Add deadline",
+        "date": "Tuesday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Early-semester progress report",
+        "date": "Monday, Jan. 25 - Friday, Jan. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Academic/Financial deadline to drop class",
+        "date": "Monday, Feb. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Grading option deadline (choose pass/fail or audit)",
+        "date": "Monday, Feb. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Religious Observance Notification Deadline",
+        "date": "Monday, Feb. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Midterm",
+        "date": "Monday, Mar. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Mid-semester progress report",
+        "date": "Tuesday, Mar. 2 - Tuesday, Mar. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Spring Break (no residential classes)",
+        "date": "Sunday, Mar. 7 - Sunday, Mar. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Registration for Summer 2027",
+        "date": "Wednesday, Mar. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Registration for Fall 2027",
+        "date": "Wednesday, Apr. 7 - Wednesday, Jun. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Withdrawal deadline",
+        "date": "Tuesday, Apr. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Reading days",
+        "date": "Tuesday, Apr. 27 - Wednesday, Apr. 28, Saturday, May 1 - Sunday, May 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Final examinations",
+        "date": "Thursday, Apr. 29 - Friday, Apr. 30, Monday, May 3 - Tuesday, May 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Last day of the Semester",
+        "date": "Tuesday, May 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Commencement Weekend",
+        "date": "Saturday, May 8 - Sunday, May 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Degree Award Date",
+        "date": "Sunday, May 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Spring 2027",
+        "event": "Final grades due from faculty",
+        "date": "Monday, May 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Maymester",
+        "date": "Monday, May 10 - Friday, May 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 10 - Friday, Aug. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Six Week First Session",
+        "date": "Monday, May 17 - Friday, Jun. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 17 - Friday, Aug. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Memorial Day (no residential classes, University offices closed)",
+        "date": "Monday, May 31",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Maymester final grades due from faculty",
+        "date": "Thursday, Jun. 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Mid-semester progress report Six Week First Session",
+        "date": "Friday, Jun. 4 - Wednesday, Jun. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Juneteenth (no residential classes, University offices closed)",
+        "date": "Friday, Jun. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Degree Award Date",
+        "date": "Friday, Jun. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Mid-semester progress report Twelve Week Session",
+        "date": "Friday, Jun. 25 - Friday, Jul. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jun. 28 - Friday, Aug. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Mid-semester progress report Regular Academic Session",
+        "date": "Wednesday, Jun. 30 - Wednesday, Jul. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Independence Day (no residential classes, University offices closed)",
+        "date": "Monday, Jul. 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Six Week First Session final grades due from faculty",
+        "date": "Thursday, Jul. 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Mid-semester progress report Six Week Second Session",
+        "date": "Friday, Jul. 16 - Wednesday, Jul. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Six Week Second Session and Twelve Week Session final grades due from faculty",
+        "date": "Thursday, Aug. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Regular Academic Session final grades due from faculty",
+        "date": "Thursday, Aug. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      },
+      {
+        "semester": "Summer 2027",
+        "event": "Degree Award Date",
+        "date": "Friday, Aug. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/academic-year/"
+      }
+    ],
+    "five_year": [
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Syracuse Welcome new undergraduate registration",
+        "date": "Saturday, Aug. 23 - Sunday, Aug. 24",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Syracuse Welcome new undergraduate registration",
+        "date": "Saturday, Aug 22 - Sunday, Aug 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Syracuse Welcome new undergraduate registration",
+        "date": "Saturday, Aug. 28 - Sunday, Aug. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Syracuse Welcome new undergraduate registration",
+        "date": "Saturday, Aug. 26 - Sunday, Aug. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Syracuse Welcome new undergraduate registration",
+        "date": "Saturday, Aug. 25 - Sunday, Aug. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "First day of classes",
+        "date": "Monday, Aug. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "First day of classes",
+        "date": "Monday, Aug. 24",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "First day of classes",
+        "date": "Monday, Aug. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "First day of classes",
+        "date": "Monday, Aug. 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "First day of classes",
+        "date": "Monday, Aug. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Labor Day (no classes)",
+        "date": "Monday, Sept. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Labor Day (no classes)",
+        "date": "Monday, Sept. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Labor Day (no classes)",
+        "date": "Monday, Sept. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Labor Day (no classes)",
+        "date": "Monday, Sept. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Labor Day (no classes)",
+        "date": "Monday, Sept. 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Fall Break (excluding LAW)",
+        "date": "Monday, Oct. 13 - Tuesday, Oct. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Fall Break (excluding LAW)",
+        "date": "Monday, Oct. 12 - Tuesday, Oct. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Fall Break (excluding LAW)",
+        "date": "Monday, Oct. 11 - Tuesday, Oct. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Fall Break (excluding LAW)",
+        "date": "Monday, Oct. 9 - Tuesday, Oct. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Fall Break (excluding LAW)",
+        "date": "Monday, Oct. 8 - Tuesday, Oct. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Midterm",
+        "date": "Wednesday, Oct. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Registration for spring",
+        "date": "Wednesday, Nov. 5 - Tuesday, Jan. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Registration for spring",
+        "date": "Tuesday, Nov. 10 - Tuesday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Registration for spring",
+        "date": "Wednesday, Nov. 10 - Tuesday, Jan. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Registration for spring",
+        "date": "Wednesday, Nov. 8 - Tuesday, Jan. 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Registration for spring",
+        "date": "Wednesday, Nov. 7 - Tuesday, Jan. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Thanksgiving break",
+        "date": "Sunday, Nov. 23 - Sunday, Nov. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Thanksgiving break",
+        "date": "Sunday, Nov. 22 - Sunday, Nov. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Thanksgiving break",
+        "date": "Sunday, Nov. 21 - Sunday, Nov. 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Thanksgiving break",
+        "date": "Sunday, Nov. 19 - Sunday, Nov. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Thanksgiving break",
+        "date": "Sunday, Nov. 18 - Sunday, Nov. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Last day of classes",
+        "date": "Tuesday, Dec. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 10, Saturday, Dec. 13, Sunday, Dec. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 9, Saturday, Dec. 12, Sunday, Dec. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 15, Saturday, Dec. 18, Sunday, Dec. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 13, Saturday, Dec. 16, Sunday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Reading days",
+        "date": "Wednesday, Dec. 12, Saturday, Dec. 15, Sunday, Dec. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 11 - Friday, Dec. 12, Monday, Dec. 15 - Tuesday, Dec. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 10 - Friday, Dec. 11, Monday, Dec. 14 - Tuesday, Dec. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 16 - Friday, Dec. 17, Monday, Dec. 20, Tuesday, Dec. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 14 - Friday, Dec. 15, Monday, Dec. 18 - Tuesday, Dec. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Final examinations",
+        "date": "Thursday, Dec. 13 - Friday, Dec. 14, Monday, Dec. 17 - Tuesday, Dec. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Last day of semester",
+        "date": "Tuesday, Dec. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Last day of semester",
+        "date": "Tuesday, Dec. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Last day of semester",
+        "date": "Tuesday, Dec. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Last day of semester",
+        "date": "Tuesday, Dec. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Last day of semester",
+        "date": "Tuesday, Dec. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2025",
+        "event": "Fall grading due date",
+        "date": "Tuesday, Dec. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2026",
+        "event": "Fall grading due date",
+        "date": "Wednesday, Dec. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2027",
+        "event": "Fall grading due date",
+        "date": "Thursday, Dec. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2028",
+        "event": "Fall grading due date",
+        "date": "Thursday, Dec. 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Fall Semester 2029",
+        "event": "Fall grading due date",
+        "date": "Thursday, Dec. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2025-26",
+        "event": "Registration",
+        "date": "Wednesday, Nov. 5 - Thursday, Dec. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2026-27",
+        "event": "Registration",
+        "date": "Tuesday, Nov. 10 - Thursday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2027-28",
+        "event": "Registration",
+        "date": "Wednesday, Nov. 10 - Thursday, Dec. 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2028-29",
+        "event": "Registration",
+        "date": "Wednesday, Nov. 8 - Thursday, Dec. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2029-30",
+        "event": "Registration",
+        "date": "Wednesday, Nov. 7 - Thursday, Dec. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2025-26",
+        "event": "First day of classes",
+        "date": "Wednesday, Dec. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2026-27",
+        "event": "First day of classes",
+        "date": "Wednesday, Dec. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2027-28",
+        "event": "First day of classes",
+        "date": "Wednesday, Dec. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2028-29",
+        "event": "First day of classes",
+        "date": "Wednesday, Dec. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2029-30",
+        "event": "First day of classes",
+        "date": "Wednesday, Dec. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2025-26",
+        "event": "Last day of classes",
+        "date": "Friday, Jan. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2026-27",
+        "event": "Last day of classes",
+        "date": "Friday, Jan. 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2027-28",
+        "event": "Last day of classes",
+        "date": "Friday, Jan. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2028-29",
+        "event": "Last day of classes",
+        "date": "Friday, Jan. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2029-30",
+        "event": "Last day of classes",
+        "date": "Friday, Jan. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2025-26",
+        "event": "Winterlude Grading Due Date",
+        "date": "Tuesday, Jan. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2026-27",
+        "event": "Winterlude Grading Due Date",
+        "date": "Tuesday, Jan. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2027-28",
+        "event": "Winterlude Grading Due Date",
+        "date": "Tuesday, Jan. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2028-29",
+        "event": "Winterlude Grading Due Date",
+        "date": "Tuesday, Jan. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Winterlude 2029-30",
+        "event": "Winterlude Grading Due Date",
+        "date": "Tuesday, Jan. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 10 - Sunday, Jan. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 9 - Sunday, Jan. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 15 - Sunday, Jan. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 13 - Sunday, Jan. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Winter Welcome new undergraduate registration",
+        "date": "Saturday, Jan. 12 - Sunday, Jan. 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Martin Luther King Jr Day (no classes)",
+        "date": "Monday, Jan. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Martin Luther King Jr Day (no classes)",
+        "date": "Monday, Jan. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Martin Luther King Jr Day (no classes)",
+        "date": "Monday, Jan. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Martin Luther King Jr Day (no classes)",
+        "date": "Monday, Jan. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Martin Luther King Jr Day (no classes)",
+        "date": "Monday, Jan. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "First day of classes",
+        "date": "Monday, Jan. 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "First day of classes",
+        "date": "Monday, Jan. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "First day of classes",
+        "date": "Tuesday, Jan. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "First day of classes",
+        "date": "Tuesday, Jan. 16",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "First day of classes",
+        "date": "Monday, Jan. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Midterm",
+        "date": "Monday, Mar. 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Midterm",
+        "date": "Monday, Mar. 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Midterm",
+        "date": "Monday, Mar. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Midterm",
+        "date": "Monday, Mar. 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Midterm",
+        "date": "Monday, Mar. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Spring break",
+        "date": "Sunday, Mar. 8 - Sunday, Mar. 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Spring break",
+        "date": "Sunday, Mar. 7 - Sunday, Mar. 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Spring break",
+        "date": "Sunday, Mar. 12 - Sunday, Mar. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Spring break",
+        "date": "Sunday, Mar. 11 - Sunday, Mar. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Spring break",
+        "date": "Sunday, Mar. 10 - Sunday, Mar. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Registration for summer",
+        "date": "Wednesday, Mar. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Registration for summer",
+        "date": "Wednesday, Mar. 17",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Registration for summer",
+        "date": "Wednesday, Mar. 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Registration for summer",
+        "date": "Wednesday, Mar. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Registration for summer",
+        "date": "Wednesday, Mar. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Registration for fall",
+        "date": "Wednesday, Apr. 8 - Tuesday, Jun. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Registration for fall",
+        "date": "Wednesday, Apr. 7 - Wednesday, Jun. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Registration for fall",
+        "date": "Wednesday, Apr. 5 - Friday, June. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Registration for fall",
+        "date": "Wednesday, Apr. 11 - Friday, Jun. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Registration for fall",
+        "date": "Wednesday, Apr. 10 - Friday, Jun. 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Last day of classes",
+        "date": "Monday, May 1",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Last day of classes",
+        "date": "Monday, Apr. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Reading days",
+        "date": "Tuesday, Apr. 28 - Wednesday, Apr. 29, Saturday, May 2 - Sunday, May 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Reading days",
+        "date": "Tuesday, Apr. 27 - Wednesday, Apr. 28, Saturday, May 1 - Sunday, May 2",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Reading days",
+        "date": "Tuesday, May 2 - Wednesday, May 3, Saturday, May 6 - Sunday, May 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Reading days",
+        "date": "Tuesday, May 1 - Wednesday, May 2, Saturday, May 5 - Sunday, May 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Reading days",
+        "date": "Tuesday, Apr. 30 - Wednesday, May 1, Saturday, May 4 - Sunday, May 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Final examinations",
+        "date": "Thursday, Apr. 30 - Friday, May 1, Monday, May 4 - Tuesday, May 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Final examinations",
+        "date": "Thursday, Apr. 29 - Friday, Apr. 30, Monday, May 3 - Tuesday, May 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Final examinations",
+        "date": "Thursday, May 4 - Friday, May 5, Monday, May 8 - Tuesday, May 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Final examinations",
+        "date": "Thursday, May 3 - Friday, May 4, Monday, May 7 - Tuesday, May 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Final examinations",
+        "date": "Thursday, May 2 - Friday, May 3, Monday, May 6 - Tuesday, May 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Last day of semester",
+        "date": "Tuesday, May 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Last day of semester",
+        "date": "Tuesday, May 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Last day of semester",
+        "date": "Tuesday, May 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Last day of semester",
+        "date": "Tuesday, May 8",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Last day of semester",
+        "date": "Tuesday, May 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Commencement",
+        "date": "Sunday, May 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Commencement",
+        "date": "Sunday, May 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Commencement",
+        "date": "Sunday, May 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Commencement",
+        "date": "Sunday, May 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Commencement",
+        "date": "Sunday, May 12",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2026",
+        "event": "Spring grading due date",
+        "date": "Monday, May 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2027",
+        "event": "Spring grading due date",
+        "date": "Monday, May 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2028",
+        "event": "Spring grading due date",
+        "date": "Monday, May 15",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2029",
+        "event": "Spring grading due date",
+        "date": "Monday, May 14",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Spring Semester 2030",
+        "event": "Spring grading due date",
+        "date": "Monday, May 13",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Maymester",
+        "date": "Monday, May 11 - Friday, May 22",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Maymester",
+        "date": "Monday, May 10 - Friday, May 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Maymester",
+        "date": "Monday, May 15 - Friday, May 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Maymester",
+        "date": "Monday, May 14 - Friday, May 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Maymester",
+        "date": "Monday, May 13 - Friday, May 24",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 11 - Friday, Aug. 21",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 10 - Friday, Aug. 20",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 15 - Friday, Aug. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 14 - Friday, Aug. 24",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Regular Academic Session",
+        "date": "Monday, May 13 - Friday, Aug. 23",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Six Week First Session",
+        "date": "Monday, May 18 - Friday, Jun. 26",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Six Week First Session",
+        "date": "Monday, May 17 - Friday, Jun. 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Six Week First Session",
+        "date": "Monday, May 22 - Friday, Jun. 30",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Six Week First Session",
+        "date": "Monday, May 21 - Friday, Jun. 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Six Week First Session",
+        "date": "Monday, May 20 - Friday, Jun. 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 18 - Friday, Aug. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 17 - Friday. Aug. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 22 - Friday, Aug. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 21 - Friday, Aug. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Twelve Week Session",
+        "date": "Monday, May 20 - Friday, Aug. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Memorial Day (no classes)",
+        "date": "Monday, May 25",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Memorial Day (no classes)",
+        "date": "Monday, May 31",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Memorial Day (no classes)",
+        "date": "Monday, May 29",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Memorial Day (no classes)",
+        "date": "Monday, May 28",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Memorial Day (no classes)",
+        "date": "Monday, May 27",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Juneteenth Observance Day",
+        "date": "Friday, Jun. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Juneteenth Observance Day",
+        "date": "Friday, Jun. 18",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Juneteenth Observance Day",
+        "date": "Monday, Jun. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Juneteenth Observance Day",
+        "date": "Tuesday, Jun. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Juneteenth Observance Day",
+        "date": "Wednesday, June. 19",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jun. 29 - Friday, Aug. 7",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jun. 28 - Friday, Aug. 6",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jul. 3 - Friday, Aug. 11",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jul. 2 - Friday, Aug. 10",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Six Week Second Session",
+        "date": "Monday, Jul. 1 - Friday, Aug. 9",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2026",
+        "event": "Independence Day (no classes)",
+        "date": "Friday, Jul. 3",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2027",
+        "event": "Independence Day (no classes)",
+        "date": "Monday, Jul. 5",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2028",
+        "event": "Independence Day (no classes)",
+        "date": "Tuesday, Jul. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2029",
+        "event": "Independence Day (no classes)",
+        "date": "Wednesday, Jul. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      },
+      {
+        "semester": "Summer Session 2030",
+        "event": "Independence Day (no classes)",
+        "date": "Thursday, Jul. 4",
+        "source_url": "https://www.syracuse.edu/academics/calendars/five-year/"
+      }
+    ],
+    "degree_awards": [
+      {
+        "semester": "Degree Awards 2022-2023",
+        "event": "Degree Award Date",
+        "date": "Dec. 21, 2022",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2023-2024",
+        "event": "Degree Award Date",
+        "date": "Dec. 22, 2023",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2024- 2025",
+        "event": "Degree Award Date",
+        "date": "Dec. 20, 2024",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2025-2026",
+        "event": "Degree Award Date",
+        "date": "Dec. 24, 2025",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2022-2023",
+        "event": "Degree Award Date",
+        "date": "May 14, 2023",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2023-2024",
+        "event": "Degree Award Date",
+        "date": "May 12, 2024",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2024- 2025",
+        "event": "Degree Award Date",
+        "date": "May 11, 2025",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2025-2026",
+        "event": "Degree Award Date",
+        "date": "May 10, 2026",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2022-2023",
+        "event": "Degree Award Date",
+        "date": "Jun. 30, 2023",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2023-2024",
+        "event": "Degree Award Date",
+        "date": "Jun. 28, 2024",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2024- 2025",
+        "event": "Degree Award Date",
+        "date": "Jun. 27, 2025",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2025-2026",
+        "event": "Degree Award Date",
+        "date": "Jun. 26, 2026",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2022-2023",
+        "event": "Degree Award Date",
+        "date": "Aug. 25, 2023",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2023-2024",
+        "event": "Degree Award Date",
+        "date": "Aug. 23, 2024",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2024- 2025",
+        "event": "Degree Award Date",
+        "date": "Aug. 22, 2025",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      },
+      {
+        "semester": "Degree Awards 2025-2026",
+        "event": "Degree Award Date",
+        "date": "Aug. 21, 2026",
+        "source_url": "https://www.syracuse.edu/academics/calendars/"
+      }
+    ]
+  }
+}

@@ -2,6 +2,8 @@
 Planner agent: classifies the user question and routes to wiki / calendar / general.
 No MCP tools; single LLM call with structured output.
 """
+import json
+from pathlib import Path
 from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -12,11 +14,34 @@ from pydantic import BaseModel, Field
 from config import settings
 from agent.state import AgentState, Route
 
+_CALENDAR_JSON_PATH = Path(__file__).resolve().parent.parent / "Data" / "calendar.json"
+_calendar_cache: str | None = None
+
+
+def _load_calendar_context() -> str:
+    """Load calendar JSON and format as a text block for the LLM. Cached after first read."""
+    global _calendar_cache
+    if _calendar_cache is not None:
+        return _calendar_cache
+
+    if not _CALENDAR_JSON_PATH.exists():
+        _calendar_cache = "[Calendar data not available. Run: python -m scripts.scrape_calendar]"
+        return _calendar_cache
+
+    data = json.loads(_CALENDAR_JSON_PATH.read_text(encoding="utf-8"))
+    lines: list[str] = []
+    for cal_type, entries in data.get("calendars", {}).items():
+        for entry in entries:
+            lines.append(f"[{entry.get('semester', '')}] {entry.get('event', '')}: {entry.get('date', '')}")
+
+    _calendar_cache = "\n".join(lines)
+    return _calendar_cache
+
 ROUTING_PROMPT = """You are a router for a university help assistant. Classify the user's question into exactly one route.
 
 Routes:
 - wiki: Procedures, how-to, policy, or meaning (e.g. "How do I drop a course?", "What happens after I drop?", "What is add/drop?")
-- calendar: Exact dates or academic calendar (e.g. "When is add/drop deadline for spring 2026?", "What is the last day to add a class?")
+- calendar: Exact dates, deadlines, or academic calendar questions (e.g. "When is add/drop deadline for spring 2026?", "What is the last day to add a class?", "When is spring break?")
 - general: Greetings, general knowledge, off-topic, or anything not covered by wiki/calendar routes (e.g. "Hi", "What can you do?", "Tell me about Syracuse University").
 
 Respond with only the route: wiki, calendar, or general."""
@@ -81,12 +106,24 @@ async def _general_node(state: AgentState) -> AgentState:
     return {**state, "final_response": response.content}
 
 
-def _calendar_placeholder_node(state: AgentState) -> AgentState:
-    """Placeholder for future Calendar agent."""
-    return {
-        **state,
-        "final_response": "Academic calendar dates are not yet available in this assistant. Please check the university academic calendar directly. I can help with procedures and policies from the Answers wiki.",
-    }
+CALENDAR_SYSTEM_PROMPT = """You are a Syracuse University academic calendar assistant. Use the calendar data provided below to answer the user's question about dates and deadlines. Always cite the specific date. If the data doesn't contain the answer, say so and suggest checking https://www.syracuse.edu/academics/calendars/."""
+
+
+async def _calendar_node(state: AgentState) -> AgentState:
+    """Calendar node: loads full calendar data as LLM context and answers date questions."""
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        api_key=settings.openai_api_key or None,
+        temperature=0,
+    )
+    messages = state.get("messages") or []
+    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
+    calendar_context = _load_calendar_context()
+    response = await llm.ainvoke([
+        SystemMessage(content=f"{CALENDAR_SYSTEM_PROMPT}\n\n--- CALENDAR DATA ---\n{calendar_context}"),
+        HumanMessage(content=user_content),
+    ])
+    return {**state, "final_response": response.content}
 
 
 def _wiki_placeholder_node(state: AgentState) -> AgentState:
@@ -120,7 +157,7 @@ def create_planner_graph(wiki_graph=None):
         "wiki",
         _make_async_wiki_node(wiki_graph) if wiki_graph else _wiki_placeholder_node,
     )
-    graph.add_node("calendar", _calendar_placeholder_node)
+    graph.add_node("calendar", _calendar_node)
     graph.add_node("general", _general_node)
 
     graph.add_conditional_edges("route", _route_edges, ["wiki", "calendar", "general"])

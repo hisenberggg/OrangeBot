@@ -82,6 +82,20 @@ All configuration (API keys, Confluence URL, limits, embedding model, vector sto
 
    Then `POST /chat` with `{"message": "How do I drop a course?"}`.
 
+## Refreshing data
+
+Both data sources can be refreshed independently. Run these from the project root with the venv activated, then restart the API server to pick up the new data.
+
+| Data source | Command | Output |
+|---|---|---|
+| Wiki (Answers) | `python -m mcp_servers.wiki.indexer` | `Data/wiki_chroma/` |
+| Academic calendar | `python -m scripts.scrape_calendar` | `Data/calendar.json` |
+
+- **Wiki indexer** — Re-fetches all Confluence pages, chunks them, generates embeddings, and rebuilds the ChromaDB vector store. Add `--incremental` to append without clearing the existing collection.
+- **Calendar scraper** — Re-fetches the Syracuse academic calendar pages, parses HTML tables, and writes structured JSON with ~300 date entries.
+
+Both are safe to re-run at any time (e.g. via cron job) to keep data current.
+
 ## Project layout
 
 - `config/` — Central config (`.env` + `config/settings.py`).
