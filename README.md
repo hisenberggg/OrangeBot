@@ -4,9 +4,24 @@ One-stop chat interface for university questions using Agentic RAG: a **Planner*
 
 ## Architecture
 
-- **Planner** — Classifies the question and routes to `wiki`, `calendar`, or `general`.
-- **Wiki agent** — Uses the wiki MCP tool `answers_retrieve` to answer with citations.
-- **Wiki MCP** — Confluence REST client plus a pre-indexed semantic retrieve path (Chroma + embeddings). When the vector index is built, `answers_retrieve` uses fast semantic search over local chunks and returns evidence snippets; optionally it can fall back to CQL + fetch + chunk when no index data is available.
+```mermaid
+flowchart TD
+    User[User Question] --> Planner[Planner]
+    Planner -->|wiki| Wiki[Wiki Agent]
+    Planner -->|calendar| Calendar[Calendar Agent]
+    Planner -->|general| General[General Agent]
+    Wiki --> ChromaDB[ChromaDB]
+    Calendar --> JSON[Calendar JSON]
+    Wiki --> Response[Response]
+    Calendar --> Response
+    General --> Response
+```
+
+- **Planner** — Classifies the question (gpt-4o-mini with structured output) and routes to `wiki`, `calendar`, or `general`.
+- **Wiki agent** — ReAct agent with the `answers_retrieve` MCP tool. Uses pre-indexed semantic search (ChromaDB) for fast retrieval, with CQL fallback.
+- **Calendar node** — Loads all scraped academic calendar data (~300 entries) as LLM context and answers date/deadline questions.
+- **General node** — Direct LLM call for greetings, general knowledge, and off-topic questions.
+- **Frontend** — Next.js app with SSE streaming, thinking steps display, and markdown rendering.
 
 All configuration (API keys, Confluence URL, limits, embedding model, vector store path) is loaded from `.env`; see `.env.example`.
 
