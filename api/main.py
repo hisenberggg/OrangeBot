@@ -102,6 +102,7 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
                     "wiki": "Searching Answers wiki...",
                     "calendar": "Checking academic calendar...",
                     "general": "Generating response...",
+                    "transit": "Checking bus schedules...",
                 }.get(route_value, "Processing...")
                 yield _sse("thinking", {"type": "status", "message": label})
 
@@ -120,7 +121,7 @@ async def _stream_graph(message: str) -> AsyncGenerator[str, None]:
                     accumulated += chunk.content
                     yield _sse("delta", {"content": chunk.content})
 
-            elif kind == "on_chain_end" and name in ("wiki", "calendar", "general"):
+            elif kind == "on_chain_end" and name in ("wiki", "calendar", "general", "transit"):
                 output = event.get("data", {}).get("output", {})
                 final = output.get("final_response") or accumulated
                 yield _sse("done", {"response": final, "route": route_value})

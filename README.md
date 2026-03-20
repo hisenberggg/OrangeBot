@@ -9,17 +9,21 @@ flowchart TD
     User[User Question] --> Planner[Planner]
     Planner -->|wiki| Wiki[Wiki Agent]
     Planner -->|calendar| Calendar[Calendar Agent]
+    Planner -->|transit| Transit[Transit Agent]
     Planner -->|general| General[General Agent]
     Wiki --> ChromaDB[ChromaDB]
-    Calendar --> JSON[Calendar JSON]
+    Calendar --> CalJSON[Calendar JSON]
+    Transit --> BusJSON[Bus Schedules JSON]
     Wiki --> Response[Response]
     Calendar --> Response
+    Transit --> Response
     General --> Response
 ```
 
-- **Planner** — Classifies the question (gpt-4o-mini with structured output) and routes to `wiki`, `calendar`, or `general`.
+- **Planner** — Classifies the question (gpt-4o-mini with structured output) and routes to `wiki`, `calendar`, `transit`, or `general`.
 - **Wiki agent** — ReAct agent with the `answers_retrieve` MCP tool. Uses pre-indexed semantic search (ChromaDB) for fast retrieval, with CQL fallback.
 - **Calendar node** — Loads all scraped academic calendar data (~300 entries) as LLM context and answers date/deadline questions.
+- **Transit node** — Loads scraped bus/shuttle schedule data (15 routes) as LLM context and answers route/time questions.
 - **General node** — Direct LLM call for greetings, general knowledge, and off-topic questions.
 - **Frontend** — Next.js app with SSE streaming, thinking steps display, and markdown rendering.
 
@@ -105,11 +109,13 @@ Both data sources can be refreshed independently. Run these from the project roo
 |---|---|---|
 | Wiki (Answers) | `python -m mcp_servers.wiki.indexer` | `Data/wiki_chroma/` |
 | Academic calendar | `python -m scripts.scrape_calendar` | `Data/calendar.json` |
+| Bus schedules | `python -m scripts.scrape_bus_schedules` | `Data/bus_schedules.json` |
 
 - **Wiki indexer** — Re-fetches all Confluence pages, chunks them, generates embeddings, and rebuilds the ChromaDB vector store. Add `--incremental` to append without clearing the existing collection.
 - **Calendar scraper** — Re-fetches the Syracuse academic calendar pages, parses HTML tables, and writes structured JSON with ~300 date entries.
+- **Bus schedule scraper** — Downloads shuttle and Centro bus PDFs, extracts timetable text via pdfplumber, and writes structured JSON with 15 route schedules.
 
-Both are safe to re-run at any time (e.g. via cron job) to keep data current.
+All three are safe to re-run at any time (e.g. via cron job) to keep data current.
 
 ## Project layout
 

@@ -17,6 +17,9 @@ from agent.state import AgentState, Route
 _CALENDAR_JSON_PATH = Path(__file__).resolve().parent.parent / "Data" / "calendar.json"
 _calendar_cache: str | None = None
 
+_BUS_JSON_PATH = Path(__file__).resolve().parent.parent / "Data" / "bus_schedules.json"
+_bus_cache: str | None = None
+
 
 def _load_calendar_context() -> str:
     """Load calendar JSON and format as a text block for the LLM. Cached after first read."""
@@ -42,16 +45,17 @@ ROUTING_PROMPT = """You are a router for a university help assistant. Classify t
 Routes:
 - wiki: Procedures, how-to, policy, or meaning (e.g. "How do I drop a course?", "What happens after I drop?", "What is add/drop?")
 - calendar: Exact dates, deadlines, or academic calendar questions (e.g. "When is add/drop deadline for spring 2026?", "What is the last day to add a class?", "When is spring break?")
-- general: Greetings, general knowledge, off-topic, or anything not covered by wiki/calendar routes (e.g. "Hi", "What can you do?", "Tell me about Syracuse University").
+- transit: Bus schedules, shuttle times, trolley routes, Centro routes (e.g. "When does the South Campus shuttle run?", "What time is the next Blue Loop?", "Which bus goes to Destiny USA?")
+- general: Greetings, general knowledge, off-topic, or anything not covered by the above routes (e.g. "Hi", "What can you do?", "Tell me about Syracuse University").
 
-Respond with only the route: wiki, calendar, or general."""
+Respond with only the route: wiki, calendar, transit, or general."""
 
 
 class RouteOutput(BaseModel):
     """Structured output for the planner router."""
 
-    route: Literal["wiki", "calendar", "general"] = Field(
-        description="One of: wiki, calendar, general"
+    route: Literal["wiki", "calendar", "general", "transit"] = Field(
+        description="One of: wiki, calendar, general, transit"
     )
     rationale: str = Field(default="", description="Brief reason for this route.")
 
@@ -126,6 +130,75 @@ async def _calendar_node(state: AgentState) -> AgentState:
     return {**state, "final_response": response.content}
 
 
+def _load_bus_context() -> str:
+    """Load bus schedule JSON and format as a text block for the LLM. Cached after first read."""
+    global _bus_cache
+    if _bus_cache is not None:
+        return _bus_cache
+
+    if not _BUS_JSON_PATH.exists():
+        _bus_cache = "[Bus schedule data not available. Run: python -m scripts.scrape_bus_schedules]"
+        return _bus_cache
+
+    data = json.loads(_BUS_JSON_PATH.read_text(encoding="utf-8"))
+    lines: list[str] = []
+    for route in data.get("routes", []):
+        name = route.get("name", "Unknown")
+        category = route.get("category", "").replace("Link", "")
+        lines.append(f"=== {name} ({category}) ===")
+        stops = route.get("stops", [])
+        if stops:
+            lines.append(f"Stops: {' -> '.join(stops)}")
+        notes = route.get("notes", "")
+        if notes:
+            lines.append(f"Notes: {notes}")
+        trips = route.get("trips", [])
+        if trips:
+            for trip in trips:
+                lines.append(trip)
+        raw_text = route.get("raw_text", "")
+        if raw_text and not trips:
+            lines.append(raw_text)
+        if route.get("source_url"):
+            lines.append(f"Source: {route['source_url']}")
+        if route.get("map_url"):
+            lines.append(f"Map: {route['map_url']}")
+        lines.append("")
+
+    _bus_cache = "\n".join(lines)
+    return _bus_cache
+
+
+TRANSIT_SYSTEM_PROMPT = """You are a Syracuse University transit assistant. Use the bus and shuttle schedule data provided below to answer the user's question about routes, stops, and times.
+
+The current date and time is provided below. Use it to determine which buses are upcoming or have already passed.
+
+Each trip is listed as: StopName TIME -> StopName TIME -> ... showing the exact time the bus reaches each stop in sequence. Use these stop-time pairs directly when answering — do NOT guess or interpolate times.
+
+Always cite the specific route name, stop name, and times. If the data doesn't contain the answer, say so and suggest checking https://parking.syr.edu/transportation/shuttle-information/campus-shuttle-schedules/ for the latest schedules.
+
+When mentioning a route, include the source PDF link if available."""
+
+
+async def _transit_node(state: AgentState) -> AgentState:
+    """Transit node: loads full bus schedule data as LLM context and answers route/time questions."""
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        api_key=settings.openai_api_key or None,
+        temperature=0,
+    )
+    messages = state.get("messages") or []
+    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
+    from datetime import datetime as _dt
+    time_str = _dt.now().strftime("%A, %B %d, %Y at %I:%M %p")
+    bus_context = _load_bus_context()
+    response = await llm.ainvoke([
+        SystemMessage(content=f"{TRANSIT_SYSTEM_PROMPT}\n\nCurrent time: {time_str}\n\n--- BUS SCHEDULE DATA ---\n{bus_context}"),
+        HumanMessage(content=user_content),
+    ])
+    return {**state, "final_response": response.content}
+
+
 def _wiki_placeholder_node(state: AgentState) -> AgentState:
     """Placeholder when wiki graph is not provided."""
     return {
@@ -134,7 +207,7 @@ def _wiki_placeholder_node(state: AgentState) -> AgentState:
     }
 
 
-def _route_edges(state: AgentState) -> Literal["wiki", "calendar", "general"]:
+def _route_edges(state: AgentState) -> Literal["wiki", "calendar", "general", "transit"]:
     """Conditional edge: next node from state['route']."""
     return state.get("route") or "general"
 
@@ -159,11 +232,13 @@ def create_planner_graph(wiki_graph=None):
     )
     graph.add_node("calendar", _calendar_node)
     graph.add_node("general", _general_node)
+    graph.add_node("transit", _transit_node)
 
-    graph.add_conditional_edges("route", _route_edges, ["wiki", "calendar", "general"])
+    graph.add_conditional_edges("route", _route_edges, ["wiki", "calendar", "general", "transit"])
     graph.add_edge("wiki", END)
     graph.add_edge("calendar", END)
     graph.add_edge("general", END)
+    graph.add_edge("transit", END)
 
     # Entry: we need an entry point. Plan says "user question" -> Planner, so START -> route
     graph.set_entry_point("route")

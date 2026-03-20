@@ -3,7 +3,7 @@ from typing import Literal, Optional, TypedDict
 
 from langchain_core.messages import BaseMessage
 
-Route = Literal["wiki", "calendar", "general"]
+Route = Literal["wiki", "calendar", "general", "transit"]
 
 
 class AgentState(TypedDict, total=False):
