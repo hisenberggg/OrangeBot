@@ -12,22 +12,29 @@ flowchart TD
     Planner -->|transit| Transit[Transit Agent]
     Planner -->|general| General[General Agent]
     Wiki --> ChromaDB[ChromaDB]
+    Wiki --> Eval{Wiki Eval Node}
+    Eval -->|"adequate"| Response[Response]
+    Eval -->|"insufficient, hop < 3"| Wiki
     Calendar --> CalJSON[Calendar JSON]
     Transit --> BusJSON[Bus Schedules JSON]
-    Wiki --> Response[Response]
     Calendar --> Response
     Transit --> Response
     General --> Response
 ```
 
 - **Planner** — Classifies the question (gpt-4o-mini with structured output) and routes to `wiki`, `calendar`, `transit`, or `general`.
-- **Wiki agent** — ReAct agent with the `answers_retrieve` MCP tool. Uses pre-indexed semantic search (ChromaDB) for fast retrieval, with CQL fallback.
+- **Wiki agent** — ReAct agent with the `answers_retrieve` MCP tool plus an evaluation loop (up to 3 hops). Uses pre-indexed semantic search (ChromaDB) for fast retrieval, with CQL fallback.
 - **Calendar node** — Loads all scraped academic calendar data (~300 entries) as LLM context and answers date/deadline questions.
 - **Transit node** — Loads scraped bus/shuttle schedule data (15 routes) as LLM context and answers route/time questions.
 - **General node** — Direct LLM call for greetings, general knowledge, and off-topic questions.
 - **Frontend** — Next.js app with SSE streaming, thinking steps display, and markdown rendering.
 
 All configuration (API keys, Confluence URL, limits, embedding model, vector store path) is loaded from `.env`; see `.env.example`.
+
+## Tests and CI
+
+- **Local:** With the venv activated, from the project root: `pytest tests/ -q`
+- **CI:** [GitHub Actions](.github/workflows/tests.yml) runs the same suite on push and pull requests to `main` or `master` (Python 3.11 and 3.12). No API secrets are required for the current tests.
 
 ## Setup
 

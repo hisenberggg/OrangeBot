@@ -15,7 +15,9 @@ from config import settings
 
 MAX_WIKI_HOPS = 3
 
-WIKI_SYSTEM_PROMPT = """You are a helpful assistant for Syracuse University. Use the Answers wiki tool to find up-to-date information about procedures, policies, and how-to topics. Call answers_retrieve to obtain evidence snippets from the pre-indexed Answers wiki (page title, section, and snippet text), and cite those sources in your answer. If you cannot find relevant information, say so clearly."""
+WIKI_SYSTEM_PROMPT = """You are a helpful assistant for Syracuse University. Use the Answers wiki tool to find up-to-date information about procedures, policies, and how-to topics. Call answers_retrieve to obtain evidence snippets from the pre-indexed Answers wiki (page title, section, and snippet text), and cite those sources in your answer. If you cannot find relevant information, say so clearly.
+
+When citing sources, copy the exact `url` field from each evidence item verbatim in markdown links. Do not change the hostname, path, or rewrite links to a different root domain."""
 
 EVAL_PROMPT = """You are an evaluation judge. Compare the original user question to the wiki-based response and determine if the response adequately answers the question.
 

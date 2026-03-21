@@ -8,6 +8,7 @@ from typing import Any
 import httpx
 
 from mcp_servers.wiki import config as wiki_config
+from mcp_servers.wiki.url_utils import normalize_confluence_webui_url
 
 
 def _base() -> str:
@@ -38,7 +39,7 @@ def list_pages(limit: int = 25, start: int = 0) -> dict[str, Any]:
             "spaceKey": space.get("key"),
             "spaceName": space.get("name"),
             "updated": version.get("when"),
-            "webuiUrl": webui,
+            "webuiUrl": normalize_confluence_webui_url(webui),
         })
     return {
         "results": results,
@@ -67,11 +68,12 @@ def search_cql(
         data = resp.json()
     results = []
     for item in data.get("results", []):
+        raw_webui = (item.get("_links") or {}).get("webui")
         results.append({
             "id": item.get("id"),
             "title": item.get("title"),
             "spaceKey": item.get("space", {}).get("key"),
-            "webuiUrl": (item.get("_links") or {}).get("webui"),
+            "webuiUrl": normalize_confluence_webui_url(raw_webui),
             "selfUrl": (item.get("_links") or {}).get("self"),
             "tinyUrl": (item.get("_links") or {}).get("tinyui"),
         })
@@ -107,5 +109,5 @@ def fetch_page(page_id: str) -> dict[str, Any]:
         "updated": version.get("when"),
         "spaceKey": space.get("key"),
         "spaceName": space.get("name"),
-        "webuiUrl": links.get("webui"),
+        "webuiUrl": normalize_confluence_webui_url(links.get("webui")),
     }

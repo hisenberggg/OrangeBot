@@ -14,6 +14,7 @@ except ImportError:
     from langchain_community.vectorstores import Chroma  # fallback if langchain-chroma not installed
 
 from mcp_servers.wiki import config as wiki_config
+from mcp_servers.wiki.url_utils import normalize_confluence_webui_url
 
 COLLECTION_NAME = "syracuse_answers_chunks"
 BATCH_SIZE = 100
@@ -44,6 +45,7 @@ def _chunk_to_metadata(chunk: dict[str, Any]) -> dict[str, str | int]:
 
 def _metadata_to_chunk(metadata: dict[str, Any]) -> dict[str, Any]:
     """Reconstruct chunk dict from Chroma document metadata."""
+    raw_url = metadata.get("url", "")
     return {
         "source": metadata.get("source", "answers"),
         "pageId": metadata.get("pageId", ""),
@@ -51,7 +53,7 @@ def _metadata_to_chunk(metadata: dict[str, Any]) -> dict[str, Any]:
         "spaceKey": metadata.get("spaceKey", ""),
         "spaceName": metadata.get("spaceName", ""),
         "updated": metadata.get("updated", ""),
-        "url": metadata.get("url", ""),
+        "url": normalize_confluence_webui_url(raw_url),
         "section": metadata.get("section", ""),
         "snippet": metadata.get("snippet", ""),
     }

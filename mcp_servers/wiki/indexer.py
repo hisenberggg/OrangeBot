@@ -12,6 +12,7 @@ from typing import Any
 from mcp_servers.wiki import config as wiki_config
 from mcp_servers.wiki.chunker import chunk_page
 from mcp_servers.wiki.confluence_client import fetch_page, list_pages
+from mcp_servers.wiki.url_utils import normalize_confluence_webui_url
 from mcp_servers.wiki.vector_store import add_chunks, clear_vector_store, get_vector_store
 
 PAGE_BATCH = 25
@@ -22,11 +23,8 @@ def _normalize_webui(webui: Any, item: dict[str, Any]) -> str:
     if isinstance(webui, dict):
         webui = webui.get("href") or webui.get("url") or ""
     if not webui and item.get("webuiUrl"):
-        w = item["webuiUrl"]
-        if isinstance(w, dict):
-            w = w.get("href") or w.get("url") or ""
-        return str(w) if w else ""
-    return str(webui) if webui else ""
+        webui = item["webuiUrl"]
+    return normalize_confluence_webui_url(webui)
 
 
 def run_indexer(clear_first: bool = True, persist_directory: str | None = None) -> None:

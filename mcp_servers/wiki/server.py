@@ -12,6 +12,7 @@ from fastmcp import FastMCP
 from mcp_servers.wiki import config as wiki_config
 from mcp_servers.wiki.confluence_client import fetch_page, search_cql
 from mcp_servers.wiki.chunker import chunk_page
+from mcp_servers.wiki.url_utils import normalize_confluence_webui_url
 
 # chromadb / onnxruntime native code may write directly to fd 1 (C-level stdout)
 # during import.  In an MCP stdio server fd 1 is the JSON-RPC channel, so any
@@ -78,8 +79,7 @@ def _retrieve_via_cql(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
         webui = page.get("webuiUrl") or ""
         if not webui and item.get("webuiUrl"):
             webui = item["webuiUrl"]
-        if isinstance(webui, dict):
-            webui = webui.get("href") or webui.get("url") or str(webui)
+        webui = normalize_confluence_webui_url(webui)
         chunks = chunk_page(
             page.get("bodyHtml") or "",
             page_id=str(pid),

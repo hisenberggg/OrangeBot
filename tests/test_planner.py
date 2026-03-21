@@ -18,4 +18,4 @@ def test_planner_state_shape():
     """AgentState has expected keys."""
     from agent.state import AgentState, Route
     state: AgentState = {"messages": [], "route": "general"}
-    assert state.get("route") in ("wiki", "calendar", "general") or state.get("route") is None
+    assert state.get("route") in ("wiki", "calendar", "general", "transit") or state.get("route") is None
