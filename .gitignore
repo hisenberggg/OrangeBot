@@ -45,6 +45,9 @@ htmlcov/
 # Generated data (vector stores)
 Data/wiki_chroma/
 
+# Local app data (auth, chats, LangGraph checkpoints — not committed)
+data/
+
 # OS
 .DS_Store
 Thumbs.db

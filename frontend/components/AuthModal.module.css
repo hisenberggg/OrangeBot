@@ -1,0 +1,123 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.card {
+  box-sizing: border-box;
+  background: #1a2744;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  color: #e8eef5;
+}
+
+.title {
+  margin: 0 0 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.sub {
+  margin: 0 0 1.25rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.tabActive {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #4a9eff;
+  background: rgba(74, 158, 255, 0.2);
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.field input {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  color: #1a1a1a;
+  font-size: 1rem;
+}
+
+.field input:focus {
+  outline: 2px solid #4a9eff;
+  outline-offset: 0;
+}
+
+.field input::placeholder {
+  color: #666;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #4a9eff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(220, 80, 80, 0.2);
+  color: #ffb4b4;
+  font-size: 0.875rem;
+}

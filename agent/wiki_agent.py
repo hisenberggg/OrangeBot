@@ -12,6 +12,7 @@ from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel, Field
 
 from config import settings
+from agent.conversation import wiki_question_with_context
 
 MAX_WIKI_HOPS = 3
 
@@ -140,13 +141,15 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
     """
     messages = state.get("messages") or []
     if not messages:
-        return {**state, "final_response": "No question was provided.", "wiki_hops": 0}
+        err = "No question was provided."
+        return {
+            **state,
+            "final_response": err,
+            "wiki_hops": 0,
+            "messages": [AIMessage(content=err)],
+        }
 
-    original_question = (
-        messages[-1].content
-        if hasattr(messages[-1], "content")
-        else str(messages[-1])
-    )
+    original_question = wiki_question_with_context(messages)
 
     evaluator_llm = ChatOpenAI(
         model="gpt-4o-mini",
@@ -224,4 +227,5 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
         "final_response": best_response,
         "wiki_hops": len(queries_tried),
         "wiki_eval_reasoning": eval_reasoning,
+        "messages": [AIMessage(content=best_response)],
     }

@@ -23,6 +23,11 @@ pdfplumber>=0.11.0
 # API
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
+PyJWT>=2.8.0
+
+# LangGraph persistent checkpoints (not bundled in langgraph core)
+langgraph-checkpoint-sqlite>=2.0.0
+aiosqlite>=0.20.0
 
 # Tests
 pytest>=8.0.0

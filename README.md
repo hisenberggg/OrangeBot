@@ -36,6 +36,18 @@ All configuration (API keys, Confluence URL, limits, embedding model, vector sto
 - **Local:** With the venv activated, from the project root: `pytest tests/ -q`
 - **CI:** [GitHub Actions](.github/workflows/tests.yml) runs the same suite on push and pull requests to `main` or `master` (Python 3.11 and 3.12). No API secrets are required for the current tests.
 
+## Local persistence (auth and chat history)
+
+The chat API uses a gitignored **`data/`** directory at the project root (override with env **`DATA_DIR`**) for:
+
+- **`users.json`** — accounts (email/password for local dev; see `api/auth_store.py`)
+- **`chats.db`** — SQLite DB for per-user thread list and message transcripts for the UI
+- **`checkpoints.db`** — LangGraph `AsyncSqliteSaver` state keyed by `thread_id` (short-term agent memory)
+
+Set **`JWT_SECRET`** in `.env` for production; the default is only for development. The Next.js app shows a login/signup modal first, then loads threads via `GET /chats` and sends `thread_id` with `POST /chat/stream`. Transcript writes run in FastAPI **background tasks** after streaming completes so they do not block the SSE response.
+
+**Multi-turn context:** For a given `thread_id`, LangGraph merges each user message into checkpointed `messages`, and each assistant reply is stored as an `AIMessage` so the next turn sees prior user/assistant exchanges. Leaf nodes (`general`, `calendar`, `transit`) receive a trimmed window of recent messages (see `agent/conversation.py`); the wiki path injects prior turns as a short text prefix around the current question. **Routing** still uses only the **latest user message** for classification (low latency); if follow-ups often mis-route, you can extend `_route_node` to pass the last few messages.
+
 ## Setup
 
 1. **Create and use a separate virtual environment**
@@ -73,7 +85,7 @@ All configuration (API keys, Confluence URL, limits, embedding model, vector sto
 
    Optional: override `CONFLUENCE_BASE_URL`, `DEFAULT_SEARCH_LIMIT`, `DEFAULT_TOP_K` if needed.
 
-   **Wiki RAG (pre-indexed retrieval):** For fast semantic search, set `VECTOR_STORE_PATH` (e.g. `./data/wiki_chroma`) and run the indexer once (or on a schedule). See **Wiki indexer** below.
+   **Wiki RAG (pre-indexed retrieval):** For fast semantic search, set `VECTOR_STORE_PATH` (e.g. `./data/wiki_chroma`) and run the indexer once (or on a schedule). See **Scripts**.
 
    **LangSmith (optional):** To trace Planner and Wiki agent runs in [LangSmith](https://smith.langchain.com), set in `.env`:
    - `LANGCHAIN_TRACING_V2=true` (must be lowercase `true`)
@@ -96,7 +108,7 @@ All configuration (API keys, Confluence URL, limits, embedding model, vector sto
      ```bash
      python -m mcp_servers.wiki.indexer
      ```
-   - Run the indexer periodically (e.g. cron) to refresh the index. Use `--incremental` to append without clearing (optional).
+   - Run the indexer periodically (e.g. cron) to refresh the index. Use `--incremental` to append without clearing (optional). Full command and details are in **Scripts**.
 
 5. **Run the Chat API**
 
@@ -106,30 +118,32 @@ All configuration (API keys, Confluence URL, limits, embedding model, vector sto
    # or: uvicorn api.main:app --reload --port 8000
    ```
 
-   Then `POST /chat` with `{"message": "How do I drop a course?"}`.
+   Chat endpoints require a JWT: `POST /auth/signup` or `/auth/login`, then `POST /chats` to create a thread, then `POST /chat` or `/chat/stream` with `Authorization: Bearer <token>` and body including `thread_id` and `message`. The Next.js frontend handles this flow.
 
-## Refreshing data
+## Scripts
 
-Both data sources can be refreshed independently. Run these from the project root with the venv activated, then restart the API server to pick up the new data.
+Run these from the project root with the venv activated unless noted. For scrapers and the wiki indexer, restart the API afterward so it picks up new files or the vector store.
 
-| Data source | Command | Output |
+| Script | Command | Output / effect |
 |---|---|---|
-| Wiki (Answers) | `python -m mcp_servers.wiki.indexer` | `Data/wiki_chroma/` |
+| Wiki (Answers) indexer | `python -m mcp_servers.wiki.indexer` | `Data/wiki_chroma/` (or `VECTOR_STORE_PATH`) |
 | Academic calendar | `python -m scripts.scrape_calendar` | `Data/calendar.json` |
 | Bus schedules | `python -m scripts.scrape_bus_schedules` | `Data/bus_schedules.json` |
+| Clear UI chats | `python -m scripts.clear_chats` | Deletes all threads and messages in `chats.db` (honours **`DATA_DIR`**); does not modify `checkpoints.db` |
 
-- **Wiki indexer** — Re-fetches all Confluence pages, chunks them, generates embeddings, and rebuilds the ChromaDB vector store. Add `--incremental` to append without clearing the existing collection.
-- **Calendar scraper** — Re-fetches the Syracuse academic calendar pages, parses HTML tables, and writes structured JSON with ~300 date entries.
+- **Wiki indexer** — Re-fetches Confluence pages, chunks them, generates embeddings, and rebuilds the ChromaDB collection. Add `--incremental` to append without clearing the existing collection.
+- **Calendar scraper** — Re-fetches Syracuse academic calendar pages, parses HTML tables, and writes structured JSON with ~300 date entries.
 - **Bus schedule scraper** — Downloads shuttle and Centro bus PDFs, extracts timetable text via pdfplumber, and writes structured JSON with 15 route schedules.
+- **Clear UI chats** — Wipes stored chat transcripts for the UI only. LangGraph checkpoint state for `thread_id` is unchanged; use only when you want an empty thread list without deleting accounts (`users.json`).
 
-All three are safe to re-run at any time (e.g. via cron job) to keep data current.
+The indexer and scrapers are safe to re-run on a schedule (e.g. cron) to keep data current.
 
 ## Project layout
 
 - `config/` — Central config (`.env` + `config/settings.py`).
-- `agent/` — LangGraph: `planner.py` (Planner), `wiki_agent.py` (Wiki sub-graph with MCP tools), `state.py`.
+- `agent/` — LangGraph: `planner.py` (Planner), `wiki_agent.py` (Wiki sub-graph with MCP tools), `state.py`, `conversation.py` (trimmed chat history for multi-turn prompts).
 - `mcp_servers/wiki/` — Confluence client, chunker, vector store (Chroma), indexer, FastMCP server with the `answers_retrieve` tool.
-- `api/` — FastAPI chat endpoint.
+- `api/` — FastAPI: JWT auth (`/auth/*`), chat CRUD (`/chats`), streaming `/chat/stream` with checkpointed threads; local JSON + SQLite under `data/`.
 
 ## Implementation order (from plan)
 

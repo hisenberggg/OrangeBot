@@ -6,12 +6,13 @@ import json
 from pathlib import Path
 from typing import Literal
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from pydantic import BaseModel, Field
 
 from config import settings
+from agent.conversation import build_system_plus_history
 from agent.state import AgentState, Route
 
 _CALENDAR_JSON_PATH = Path(__file__).resolve().parent.parent / "Data" / "calendar.json"
@@ -61,7 +62,7 @@ class RouteOutput(BaseModel):
 
 
 def _route_node(state: AgentState) -> AgentState:
-    """Single node: call LLM to get route, then return updated state."""
+    """Classify the latest user message into a route (no full history — lowest latency)."""
     llm = ChatOpenAI(
         model="gpt-4o-mini",
         api_key=settings.openai_api_key or None,
@@ -102,12 +103,14 @@ async def _general_node(state: AgentState) -> AgentState:
         temperature=0.3,
     )
     messages = state.get("messages") or []
-    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
-    response = await llm.ainvoke([
-        SystemMessage(content=GENERAL_SYSTEM_PROMPT),
-        HumanMessage(content=user_content),
-    ])
-    return {**state, "final_response": response.content}
+    msg_list = build_system_plus_history(GENERAL_SYSTEM_PROMPT, messages)
+    response = await llm.ainvoke(msg_list)
+    content = response.content if hasattr(response, "content") else str(response)
+    return {
+        **state,
+        "final_response": content,
+        "messages": [AIMessage(content=content)],
+    }
 
 
 CALENDAR_SYSTEM_PROMPT = """You are a Syracuse University academic calendar assistant. Use the calendar data provided below to answer the user's question about dates and deadlines. Always cite the specific date. If the data doesn't contain the answer, say so and suggest checking https://www.syracuse.edu/academics/calendars/."""
@@ -121,13 +124,16 @@ async def _calendar_node(state: AgentState) -> AgentState:
         temperature=0,
     )
     messages = state.get("messages") or []
-    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
     calendar_context = _load_calendar_context()
-    response = await llm.ainvoke([
-        SystemMessage(content=f"{CALENDAR_SYSTEM_PROMPT}\n\n--- CALENDAR DATA ---\n{calendar_context}"),
-        HumanMessage(content=user_content),
-    ])
-    return {**state, "final_response": response.content}
+    system_full = f"{CALENDAR_SYSTEM_PROMPT}\n\n--- CALENDAR DATA ---\n{calendar_context}"
+    msg_list = build_system_plus_history(system_full, messages)
+    response = await llm.ainvoke(msg_list)
+    content = response.content if hasattr(response, "content") else str(response)
+    return {
+        **state,
+        "final_response": content,
+        "messages": [AIMessage(content=content)],
+    }
 
 
 def _load_bus_context() -> str:
@@ -188,22 +194,32 @@ async def _transit_node(state: AgentState) -> AgentState:
         temperature=0,
     )
     messages = state.get("messages") or []
-    user_content = messages[-1].content if messages and hasattr(messages[-1], "content") else ""
     from datetime import datetime as _dt
     time_str = _dt.now().strftime("%A, %B %d, %Y at %I:%M %p")
     bus_context = _load_bus_context()
-    response = await llm.ainvoke([
-        SystemMessage(content=f"{TRANSIT_SYSTEM_PROMPT}\n\nCurrent time: {time_str}\n\n--- BUS SCHEDULE DATA ---\n{bus_context}"),
-        HumanMessage(content=user_content),
-    ])
-    return {**state, "final_response": response.content}
+    system_full = (
+        f"{TRANSIT_SYSTEM_PROMPT}\n\nCurrent time: {time_str}\n\n"
+        f"--- BUS SCHEDULE DATA ---\n{bus_context}"
+    )
+    msg_list = build_system_plus_history(system_full, messages)
+    response = await llm.ainvoke(msg_list)
+    content = response.content if hasattr(response, "content") else str(response)
+    return {
+        **state,
+        "final_response": content,
+        "messages": [AIMessage(content=content)],
+    }
 
 
 def _wiki_placeholder_node(state: AgentState) -> AgentState:
     """Placeholder when wiki graph is not provided."""
+    text = (
+        "[Wiki agent not wired. Start with create_planner_graph(wiki_graph=...) to enable.]"
+    )
     return {
         **state,
-        "final_response": "[Wiki agent not wired. Start with create_planner_graph(wiki_graph=...) to enable.]",
+        "final_response": text,
+        "messages": [AIMessage(content=text)],
     }
 
 
@@ -212,12 +228,19 @@ def _route_edges(state: AgentState) -> Literal["wiki", "calendar", "general", "t
     return state.get("route") or "general"
 
 
-def create_planner_graph(wiki_graph=None):
+def create_planner_graph(wiki_graph=None, checkpointer=None):
     """
     Build the Planner graph: route node -> conditional -> wiki | calendar | general -> END.
     Pass wiki_graph (compiled Wiki agent from create_wiki_graph) to wire the Wiki agent.
+    Pass checkpointer for thread persistence (SqliteSaver / AsyncSqliteSaver / MemorySaver).
+    If checkpointer is None, uses in-memory MemorySaver (tests / local fallback).
     """
+    from langgraph.checkpoint.memory import MemorySaver
     from agent.wiki_agent import wiki_node
+
+    if checkpointer is None:
+        checkpointer = MemorySaver()
+
     graph = StateGraph(AgentState)
 
     def _make_async_wiki_node(wg):
@@ -243,4 +266,4 @@ def create_planner_graph(wiki_graph=None):
     # Entry: we need an entry point. Plan says "user question" -> Planner, so START -> route
     graph.set_entry_point("route")
 
-    return graph.compile()
+    return graph.compile(checkpointer=checkpointer)

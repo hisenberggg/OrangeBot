@@ -8,6 +8,8 @@ interface SidebarProps {
   activeSessionId: string;
   onSelect: (id: string) => void;
   onNew: () => void;
+  onLogout: () => void;
+  displayName: string;
   collapsed: boolean;
   onToggle: () => void;
 }
@@ -17,6 +19,8 @@ export default function Sidebar({
   activeSessionId,
   onSelect,
   onNew,
+  onLogout,
+  displayName,
   collapsed,
   onToggle,
 }: SidebarProps) {
@@ -57,14 +61,27 @@ export default function Sidebar({
             >
               <span className={styles.sessionTitle}>{s.title}</span>
               <span className={styles.sessionDate}>
-                {new Date(s.createdAt).toLocaleDateString(undefined, {
-                  month: "short",
-                  day: "numeric",
-                })}
+                {new Date(s.updatedAt || s.createdAt).toLocaleDateString(
+                  undefined,
+                  {
+                    month: "short",
+                    day: "numeric",
+                  }
+                )}
               </span>
             </button>
           ))}
         </nav>
+
+        <div className={styles.profile}>
+          <div className={styles.profileInfo}>
+            <span className={styles.profileLabel}>Signed in as</span>
+            <span className={styles.profileName}>{displayName}</span>
+          </div>
+          <button type="button" className={styles.profileLogout} onClick={onLogout}>
+            Log out
+          </button>
+        </div>
       </aside>
 
       {!collapsed && (

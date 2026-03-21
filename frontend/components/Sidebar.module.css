@@ -91,6 +91,7 @@
   gap: 2px;
   overflow-y: auto;
   flex: 1;
+  min-height: 0;
 }
 
 .sessionItem {
@@ -128,6 +129,52 @@
   font-size: 11px;
   color: var(--text-muted);
   white-space: nowrap;
+}
+
+.profile {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.profileLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.profileName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileLogout {
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  cursor: pointer;
+}
+.profileLogout:hover {
+  background: var(--border-light);
+  color: var(--text);
 }
 
 /* Responsive: narrow viewports */
