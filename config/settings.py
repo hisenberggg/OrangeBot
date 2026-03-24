@@ -37,6 +37,11 @@ def _bool(key: str, default: bool = False) -> bool:
 # LLM
 OPENAI_API_KEY = _str("OPENAI_API_KEY")
 
+# Tavily (web search + extract for planner web route)
+TAVILY_API_KEY = _str("TAVILY_API_KEY")
+TAVILY_MAX_RESULTS = _int("TAVILY_MAX_RESULTS", 5)
+TAVILY_CONTEXT_MAX_CHARS = _int("TAVILY_CONTEXT_MAX_CHARS", 12000)
+
 # LangSmith (tracing; LangChain/LangGraph read these from env when set)
 LANGCHAIN_TRACING_V2 = _bool("LANGCHAIN_TRACING_V2", False)
 LANGCHAIN_API_KEY = _str("LANGCHAIN_API_KEY")
@@ -68,6 +73,9 @@ class _Settings:
     """Single namespace for all config; import as 'from config import settings'."""
 
     openai_api_key = OPENAI_API_KEY
+    tavily_api_key = TAVILY_API_KEY
+    tavily_max_results = TAVILY_MAX_RESULTS
+    tavily_context_max_chars = TAVILY_CONTEXT_MAX_CHARS
     langchain_tracing_v2 = LANGCHAIN_TRACING_V2
     langchain_api_key = LANGCHAIN_API_KEY
     langchain_project = LANGCHAIN_PROJECT

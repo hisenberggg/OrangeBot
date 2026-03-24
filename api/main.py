@@ -14,8 +14,21 @@ except ImportError:
     pass
 
 import json
+import logging
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
+
+
+def _configure_agent_logging() -> None:
+    """Route agent.* INFO logs to stderr; root defaults to WARNING so they would otherwise be dropped."""
+    log = logging.getLogger("agent")
+    log.setLevel(logging.INFO)
+    if log.handlers:
+        return
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter("%(levelname)s: %(name)s: %(message)s"))
+    log.addHandler(handler)
+    log.propagate = False
 
 from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,6 +50,7 @@ _checkpointer = None
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global _checkpointer, _planner_graph
+    _configure_agent_logging()
     ensure_data_dir()
     from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 
@@ -82,7 +96,10 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     response: str = Field(..., description="Final assistant response")
-    route: str | None = Field(default=None, description="Planner route: wiki, calendar, or general")
+    route: str | None = Field(
+        default=None,
+        description="Planner route: wiki, calendar, transit, general, or web",
+    )
 
 
 def _sse(event: str, data: dict) -> str:
@@ -141,6 +158,7 @@ async def _stream_graph(
                     "calendar": "Checking academic calendar...",
                     "general": "Generating response...",
                     "transit": "Checking bus schedules...",
+                    "web": "Searching the web...",
                 }.get(route_value, "Processing...")
                 yield _sse("thinking", {"type": "status", "message": label})
 
@@ -183,7 +201,35 @@ async def _stream_graph(
                     has_streamed_response = True
                     yield _sse("delta", {"content": chunk.content})
 
-            elif kind == "on_chain_end" and name in ("wiki", "calendar", "general", "transit"):
+            elif kind == "on_chain_end" and name == "wiki":
+                output = event.get("data", {}).get("output", {})
+                if output.get("wiki_escalate_to_web"):
+                    yield _sse(
+                        "thinking",
+                        {
+                            "type": "status",
+                            "message": "Wiki had no sufficient answer; searching the web…",
+                        },
+                    )
+                    accumulated = ""
+                    has_streamed_response = False
+                else:
+                    final = output.get("final_response") or accumulated
+                    final_response = final
+                    yield _sse(
+                        "done",
+                        {
+                            "response": final,
+                            "route": route_value if include_route else None,
+                        },
+                    )
+
+            elif kind == "on_chain_end" and name in (
+                "calendar",
+                "general",
+                "transit",
+                "web",
+            ):
                 output = event.get("data", {}).get("output", {})
                 final = output.get("final_response") or accumulated
                 final_response = final

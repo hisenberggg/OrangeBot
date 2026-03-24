@@ -1,6 +1,9 @@
 # Config
 python-dotenv>=1.0.0
 
+# Web search (Tavily)
+tavily-python>=0.5.0
+
 # LLM and agents (Planner, Wiki agent)
 langgraph>=0.2.0
 langchain-openai>=0.2.0

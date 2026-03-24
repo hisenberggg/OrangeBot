@@ -44,19 +44,20 @@ def _load_calendar_context() -> str:
 ROUTING_PROMPT = """You are a router for a university help assistant. Classify the user's question into exactly one route.
 
 Routes:
-- wiki: Procedures, how-to, policy, or meaning (e.g. "How do I drop a course?", "What happens after I drop?", "What is add/drop?")
-- calendar: Exact dates, deadlines, or academic calendar questions (e.g. "When is add/drop deadline for spring 2026?", "What is the last day to add a class?", "When is spring break?")
-- transit: Bus schedules, shuttle times, trolley routes, Centro routes (e.g. "When does the South Campus shuttle run?", "What time is the next Blue Loop?", "Which bus goes to Destiny USA?")
-- general: Greetings, general knowledge, off-topic, or anything not covered by the above routes (e.g. "Hi", "What can you do?", "Tell me about Syracuse University").
+- wiki: Syracuse University procedures, how-to, policy, or meaning in Answers wiki scope (e.g. "How do I drop a course?", "What is add/drop?")
+- calendar: Exact dates, deadlines, or academic calendar questions answerable from the registrar calendar (e.g. "When is spring break?", "Last day to add a class?")
+- transit: Bus schedules, shuttle times, trolley routes, Centro routes on campus (e.g. "South Campus shuttle", "Blue Loop")
+- web: Questions that need current or broad web information — news, comparisons, general knowledge, facts not covered by wiki/calendar/transit, "latest" topics, or anything where search results would clearly improve the answer. Prefer web over general whenever the user wants substantive information from the wider web.
+- general: ONLY basic interactions — greetings, thanks, "what can you do?", minimal chitchat, or tiny meta questions that need no tools and no web search. Do NOT use general for factual or open-ended knowledge questions; use web instead.
 
-Respond with only the route: wiki, calendar, transit, or general."""
+Pick exactly one route. Output structured fields: route, rationale."""
 
 
 class RouteOutput(BaseModel):
     """Structured output for the planner router."""
 
-    route: Literal["wiki", "calendar", "general", "transit"] = Field(
-        description="One of: wiki, calendar, general, transit"
+    route: Literal["wiki", "calendar", "general", "transit", "web"] = Field(
+        description="One of: wiki, calendar, general, transit, web"
     )
     rationale: str = Field(default="", description="Brief reason for this route.")
 
@@ -71,7 +72,7 @@ def _route_node(state: AgentState) -> AgentState:
     structured_llm = llm.with_structured_output(RouteOutput)
     messages = state.get("messages") or []
     if not messages:
-        return {**state, "route": "general"}
+        return {**state, "route": "general", "route_rationale": ""}
     user_content = messages[-1].content if hasattr(messages[-1], "content") else str(messages[-1])
     response = structured_llm.invoke(
         [
@@ -80,23 +81,79 @@ def _route_node(state: AgentState) -> AgentState:
         ]
     )
     route: Route = response.route or "general"
-    return {**state, "route": route, "route_rationale": response.rationale or ""}
+    return {
+        **state,
+        "route": route,
+        "route_rationale": response.rationale or "",
+    }
 
 
-GENERAL_SYSTEM_PROMPT = """You are a helpful Syracuse University assistant. Answer the user's question to the best of your ability. You specialize in Syracuse University topics and have access to an Answers wiki for procedures and policies. If the question is a greeting, respond warmly and mention what you can help with. If the question is completely off-topic, politely redirect.
+GENERAL_SYSTEM_PROMPT = """You are a brief, friendly Syracuse University chat assistant for simple turns only (greetings, thanks, what you can help with).
 
-When relevant, include links to well-known Syracuse University resources you are confident about, such as:
-- Syracuse University homepage: https://www.syracuse.edu
-- MySlice student portal: https://myslice.syr.edu
-- SU Answers wiki: https://answers.atlassian.syr.edu/wiki
-- Financial Aid: https://www.syracuse.edu/admissions-aid/financial-aid/
-- Registrar: https://www.syracuse.edu/academics/registrar/
-- Campus directory: https://www.syracuse.edu/directory/
-Only include links you are confident are correct. Do not guess or fabricate URLs."""
+Keep answers short. Mention you can help with: Answers wiki procedures, academic calendar dates, campus transit schedules, and web search for current or general topics.
+
+If the user asks for substantive facts or research, say they can ask a specific question and the app will route it to the right tool — do not pretend to browse the web yourself.
+
+Well-known links you may cite when relevant:
+- https://www.syracuse.edu
+- https://myslice.syr.edu
+- https://answers.atlassian.syr.edu/wiki"""
+
+
+WEB_SYSTEM_PROMPT_BASE = """You are a helpful assistant for a Syracuse University user. You answer using the WEB EXCERPTS below (from a live search and page extract). Ground your answer in those excerpts when possible; mention source titles and URLs when helpful.
+
+When the excerpts do not help: if they are missing or empty, or nothing in them substantively answers the user's question, say clearly that no relevant information was found in the retrieved web results. Give a short, cautious answer without inventing facts; suggest refining the question or checking an official or primary source when appropriate.
+
+Third-party web content may be wrong or outdated — encourage the user to verify critical facts.
+
+--- WEB EXCERPTS ---
+"""
+
+
+async def _web_node(state: AgentState) -> AgentState:
+    """Run Tavily search+extract, then answer with the LLM using retrieved text."""
+    from agent.tavily_client import fetch_web_context
+
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        api_key=settings.openai_api_key or None,
+        temperature=0.25,
+    )
+    messages = state.get("messages") or []
+    if not messages:
+        text = "No question was provided."
+        return {
+            **state,
+            "final_response": text,
+            "messages": [AIMessage(content=text)],
+        }
+    last = messages[-1]
+    user_content = (last.content if hasattr(last, "content") else str(last)).strip()
+    if not user_content:
+        text = "No question was provided."
+        return {
+            **state,
+            "final_response": text,
+            "messages": [AIMessage(content=text)],
+        }
+
+    excerpts = await fetch_web_context(user_content)
+    if not excerpts.strip():
+        excerpts = "[No web excerpts returned. TAVILY_API_KEY may be unset, or search/extract returned no content.]"
+
+    system_full = f"{WEB_SYSTEM_PROMPT_BASE}{excerpts}"
+    msg_list = build_system_plus_history(system_full, messages)
+    response = await llm.ainvoke(msg_list)
+    content = response.content if hasattr(response, "content") else str(response)
+    return {
+        **state,
+        "final_response": content,
+        "messages": [AIMessage(content=content)],
+    }
 
 
 async def _general_node(state: AgentState) -> AgentState:
-    """General-purpose node: calls the LLM to answer greetings, general knowledge, and off-topic questions."""
+    """Minimal general node: greetings and short meta only."""
     llm = ChatOpenAI(
         model="gpt-4o-mini",
         api_key=settings.openai_api_key or None,
@@ -219,18 +276,26 @@ def _wiki_placeholder_node(state: AgentState) -> AgentState:
     return {
         **state,
         "final_response": text,
+        "wiki_escalate_to_web": False,
         "messages": [AIMessage(content=text)],
     }
 
 
-def _route_edges(state: AgentState) -> Literal["wiki", "calendar", "general", "transit"]:
+def _route_edges(state: AgentState) -> Literal["wiki", "calendar", "general", "transit", "web"]:
     """Conditional edge: next node from state['route']."""
     return state.get("route") or "general"
 
 
+def _after_wiki_edges(state: AgentState) -> Literal["web", "done"]:
+    """After wiki node: escalate to web search or finish."""
+    if state.get("wiki_escalate_to_web"):
+        return "web"
+    return "done"
+
+
 def create_planner_graph(wiki_graph=None, checkpointer=None):
     """
-    Build the Planner graph: route node -> conditional -> wiki | calendar | general -> END.
+    Build the Planner graph: route node -> conditional -> wiki | calendar | transit | general | web -> END.
     Pass wiki_graph (compiled Wiki agent from create_wiki_graph) to wire the Wiki agent.
     Pass checkpointer for thread persistence (SqliteSaver / AsyncSqliteSaver / MemorySaver).
     If checkpointer is None, uses in-memory MemorySaver (tests / local fallback).
@@ -256,12 +321,20 @@ def create_planner_graph(wiki_graph=None, checkpointer=None):
     graph.add_node("calendar", _calendar_node)
     graph.add_node("general", _general_node)
     graph.add_node("transit", _transit_node)
+    graph.add_node("web", _web_node)
 
-    graph.add_conditional_edges("route", _route_edges, ["wiki", "calendar", "general", "transit"])
-    graph.add_edge("wiki", END)
+    graph.add_conditional_edges(
+        "route", _route_edges, ["wiki", "calendar", "general", "transit", "web"]
+    )
+    graph.add_conditional_edges(
+        "wiki",
+        _after_wiki_edges,
+        {"web": "web", "done": END},
+    )
     graph.add_edge("calendar", END)
     graph.add_edge("general", END)
     graph.add_edge("transit", END)
+    graph.add_edge("web", END)
 
     # Entry: we need an entry point. Plan says "user question" -> Planner, so START -> route
     graph.set_entry_point("route")

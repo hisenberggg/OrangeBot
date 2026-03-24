@@ -1,9 +1,9 @@
 """Shared state typings for Planner and downstream agents."""
-from typing import Annotated, Literal, Optional, TypedDict
+from typing import Annotated, Literal, TypedDict
 
 from langgraph.graph.message import AnyMessage, add_messages
 
-Route = Literal["wiki", "calendar", "general", "transit"]
+Route = Literal["wiki", "calendar", "general", "transit", "web"]
 
 
 class AgentState(TypedDict, total=False):
@@ -15,3 +15,4 @@ class AgentState(TypedDict, total=False):
     final_response: str
     wiki_hops: int
     wiki_eval_reasoning: str
+    wiki_escalate_to_web: bool

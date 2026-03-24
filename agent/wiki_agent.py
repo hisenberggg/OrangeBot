@@ -20,20 +20,19 @@ WIKI_SYSTEM_PROMPT = """You are a helpful assistant for Syracuse University. Use
 
 When citing sources, copy the exact `url` field from each evidence item verbatim in markdown links. Do not change the hostname, path, or rewrite links to a different root domain."""
 
-EVAL_PROMPT = """You are an evaluation judge. Compare the original user question to the wiki-based response and determine if the response adequately answers the question.
+EVAL_PROMPT = """You are an evaluation judge for a Syracuse Answers wiki assistant. Compare the original user question to the wiki-based response.
 
-A response is ADEQUATE if:
-- It directly addresses what the user asked
-- It provides specific, actionable information (not just vague references)
-- It cites wiki sources or provides concrete details
+Set is_adequate to true ONLY if the response clearly and directly answers what the user asked, with specific on-topic information. When the answer claims procedures or policy, it should cite wiki evidence (URLs/snippets) from retrieval.
 
-A response is INADEQUATE if:
-- It says "I couldn't find information" or similar
-- It only tangentially relates to the question
-- It provides generic advice without specific wiki-sourced details
-- It misunderstands the question
+Set is_adequate to false if ANY of these hold:
+- The response is vague, hedging, or only partially addresses the question
+- It says it could not find information, or gives generic advice without concrete wiki-backed details
+- It is tangential, off-topic, or likely misunderstands the question
+- It would leave a reasonable user still needing to search elsewhere
 
-If inadequate, suggest a rephrased search query that might yield better results. Try different keywords, synonyms, or a broader/narrower scope than what has already been tried.
+Be strict: if you are unsure, choose inadequate. When attempt {attempt} equals the last try ({max_attempts} of {max_attempts}), inadequate answers may trigger a web search fallback—do not pass borderline answers to avoid that.
+
+If inadequate and this is not the final attempt, suggest a rephrased search query (different keywords, synonyms, broader or narrower scope than previous tries).
 
 Previous queries tried: {previous_queries}
 Attempt: {attempt} of {max_attempts}"""
@@ -43,7 +42,10 @@ class WikiEvaluation(BaseModel):
     """Structured output from the wiki response evaluator."""
 
     is_adequate: bool = Field(
-        description="Whether the response adequately answers the user's question"
+        description=(
+            "True only if the response clearly and fully answers the user's question "
+            "with specific, on-topic content (and wiki citations when claiming policy/procedure)."
+        )
     )
     reasoning: str = Field(description="Brief explanation of the evaluation")
     suggested_query: str = Field(
@@ -146,6 +148,7 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
             **state,
             "final_response": err,
             "wiki_hops": 0,
+            "wiki_escalate_to_web": False,
             "messages": [AIMessage(content=err)],
         }
 
@@ -162,6 +165,7 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
     queries_tried: list[str] = []
     best_response = ""
     eval_reasoning = ""
+    wiki_escalate_to_web = False
 
     for attempt in range(1, MAX_WIKI_HOPS + 1):
         queries_tried.append(current_query)
@@ -176,10 +180,6 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
             response = "I couldn't generate an answer from the wiki."
 
         best_response = response
-
-        if attempt >= MAX_WIKI_HOPS:
-            eval_reasoning = f"Max attempts ({MAX_WIKI_HOPS}) reached."
-            break
 
         try:
             evaluation = await evaluator_llm.ainvoke(
@@ -203,12 +203,22 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
                 config={"tags": ["wiki_evaluator"]},
             )
         except Exception:
-            eval_reasoning = "Evaluation failed; accepting current response."
-            break
+            eval_reasoning = "Evaluation failed."
+            if attempt >= MAX_WIKI_HOPS:
+                wiki_escalate_to_web = True
+                break
+            current_query = f"{original_question} (retry after evaluation error)"
+            strategy = "rephrase"
+            continue
 
         eval_reasoning = evaluation.reasoning
 
         if evaluation.is_adequate:
+            wiki_escalate_to_web = False
+            break
+
+        if attempt >= MAX_WIKI_HOPS:
+            wiki_escalate_to_web = True
             break
 
         if evaluation.suggested_query:
@@ -217,6 +227,15 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
             current_query = f"{original_question} (alternative search)"
         strategy = evaluation.strategy
 
+    if wiki_escalate_to_web:
+        return {
+            **state,
+            "wiki_escalate_to_web": True,
+            "wiki_hops": len(queries_tried),
+            "wiki_eval_reasoning": eval_reasoning,
+            "messages": [],
+        }
+
     if not best_response:
         best_response = (
             "I couldn't generate an answer from the wiki. Please try rephrasing."
@@ -224,6 +243,7 @@ async def wiki_node(state: dict[str, Any], wiki_compiled_graph) -> dict[str, Any
 
     return {
         **state,
+        "wiki_escalate_to_web": False,
         "final_response": best_response,
         "wiki_hops": len(queries_tried),
         "wiki_eval_reasoning": eval_reasoning,
