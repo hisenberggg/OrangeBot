@@ -1,0 +1,46 @@
+[
+  {
+    "id": "run-019d4f06",
+    "input": "Tell me about the AI summit that's happening at Syracuse University",
+    "expected_route": "web",
+    "reference_response": "Syracuse University is hosting its first AI Summit, organized by the United AI club. The event is scheduled for Saturday, April 25, from 1 to 5 p.m. in the K.G. Tan Auditorium at the National Veterans Resource Center. The summit aims to foster discussions around artificial intelligence by bringing together students, faculty, researchers, and industry professionals.\n\nParticipants can expect keynote addresses from leading AI organizations and SU professors, as well as panels featuring industry speakers. The event will also include live demonstrations and showcases of research and projects from students. This summit provides an excellent opportunity for networking and learning about the future of AI across various disciplines."
+  },
+  {
+    "id": "run-019d9392",
+    "input": "When is the next bus for Euclid loop?",
+    "expected_route": "transit",
+    "reference_response": "The next bus for the Euclid Loop is scheduled to depart from College Place at 8:00 PM, arriving at the following stops:\n\n- Genesee Irving at 8:07 PM\n- Genesee Crouse at 8:08 PM\n- Genesee Westcott at 8:12 PM\n- Westcott Euclid at 8:16 PM\n- College Place at 8:25 PM\n\nSince the current time is 7:55 PM, you can catch this bus."
+  },
+  {
+    "id": "run-019d9393-3f8c",
+    "input": "When is the last day of the semester",
+    "expected_route": "calendar",
+    "reference_response": "The last day of the semester for the Fall 2026 semester is Tuesday, December 15, 2026. For the Spring 2026 semester, it is Tuesday, May 5, 2026. If you need information for a different semester, please specify."
+  },
+  {
+    "id": "run-019d9393-e816",
+    "input": "What are the types of Hold in MySlice",
+    "expected_route": "web",
+    "reference_response": "In MySlice, there are several types of holds that can be placed on a student's account, which may affect their ability to register for classes. Here are some common types of holds:\n\n1. Advising Hold: Requires students to meet with an academic advisor before they can register.\n2. Financial Hold: Prevents registration until financial obligations are met.\n3. Health Center Hold: Requires completion of health and immunization requirements.\n4. Judicial Affairs Hold: Related to disciplinary actions.\n5. Community Standards Hold: May be related to violations of community standards.\n6. Immunization Hold: Requires students to provide proof of immunizations.\n7. Bursar Hold: Related to outstanding financial balances."
+  },
+  {
+    "id": "run-019d9394",
+    "input": "How to add a minor in Computer Science Undergrads",
+    "expected_route": "wiki",
+    "reference_response": "To add a minor in Computer Science as an undergraduate at Syracuse University, you should follow these general steps:\n\n1. Consult Your Academic Advisor to understand how a minor fits into your academic plan.\n2. Review the Minor Requirements including required and elective courses.\n3. Complete the Minor Declaration Form available from your college's advising office.\n4. Plan Your Coursework to fit the minor into your existing schedule.\n5. Declare the Minor by submitting the form to the appropriate office.",
+    "extra": {
+      "wiki_hops": 1,
+      "wiki_escalate_to_web": false
+    }
+  },
+  {
+    "id": "run-019d9399",
+    "input": "My Myslice got locked. What do I do now?",
+    "expected_route": "wiki",
+    "reference_response": "If your MySlice account is locked, you should take the following steps:\n\n1. Contact Support: Call the IT Help Desk at 315.443.2677 to unlock your account and change your password.\n2. Secure Your Account: Check for any unauthorized authentication methods and remove them if necessary.",
+    "extra": {
+      "wiki_hops": 1,
+      "wiki_escalate_to_web": false
+    }
+  }
+]

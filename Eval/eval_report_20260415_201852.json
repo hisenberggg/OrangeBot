@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-04-15T20:18:52.574200",
+  "num_cases": 6,
+  "summary": {
+    "route_accuracy": 1.0,
+    "avg_response_quality": 3.8333333333333335,
+    "avg_completeness": 4.166666666666667,
+    "avg_overall": 4.283333333333333
+  },
+  "results": [
+    {
+      "test_id": "run-019d4f06",
+      "input": "Tell me about the AI summit that's happening at Syracuse University",
+      "expected_route": "web",
+      "actual_route": "web",
+      "route_match": true,
+      "response_quality_score": 4,
+      "response_quality_reasoning": "The new response is well-structured and informative, but it slightly lacks the clarity of the reference in terms of the specific focus on the summit's purpose and the nature of discussions expected.",
+      "completeness_score": 4,
+      "completeness_reasoning": "Most key facts are covered, but the new response misses the explicit mention of the summit's goal to foster discussions around AI, which is a significant aspect of the event.",
+      "overall_score": 4.3
+    },
+    {
+      "test_id": "run-019d9392",
+      "input": "When is the next bus for Euclid loop?",
+      "expected_route": "transit",
+      "actual_route": "transit",
+      "route_match": true,
+      "response_quality_score": 2,
+      "response_quality_reasoning": "The new response provides incorrect bus departure times, which misleads the student. While it is structured well, the inaccuracy significantly detracts from its quality.",
+      "completeness_score": 3,
+      "completeness_reasoning": "The new response includes the bus stops and their respective arrival times, but it fails to mention the current time, which is a key detail in determining if the bus can be caught.",
+      "overall_score": 3.2
+    },
+    {
+      "test_id": "run-019d9393-3f8c",
+      "input": "When is the last day of the semester",
+      "expected_route": "calendar",
+      "actual_route": "calendar",
+      "route_match": true,
+      "response_quality_score": 5,
+      "response_quality_reasoning": "The new response is well-structured and accurately conveys the information regarding the last days of both the Spring and Fall 2026 semesters, matching the reference in clarity and tone.",
+      "completeness_score": 5,
+      "completeness_reasoning": "All key facts from the reference are covered, including the last days for both semesters, and the response is complete and informative.",
+      "overall_score": 5.0
+    },
+    {
+      "test_id": "run-019d9393-e816",
+      "input": "What are the types of Hold in MySlice",
+      "expected_route": "web",
+      "actual_route": "web",
+      "route_match": true,
+      "response_quality_score": 4,
+      "response_quality_reasoning": "The new response is well-structured and mostly accurate, but it includes a slight change in wording for the Financial Hold that could lead to confusion about its specific nature.",
+      "completeness_score": 5,
+      "completeness_reasoning": "All key facts from the reference response are covered, and the new response adds useful information about checking for holds and links to additional resources.",
+      "overall_score": 4.6
+    },
+    {
+      "test_id": "run-019d9394",
+      "input": "How to add a minor in Computer Science Undergrads",
+      "expected_route": "wiki",
+      "actual_route": "wiki",
+      "route_match": true,
+      "response_quality_score": 4,
+      "response_quality_reasoning": "The new response is well-structured and provides helpful details, but it includes some redundancy and could be slightly more concise.",
+      "completeness_score": 4,
+      "completeness_reasoning": "Most key facts are covered, but the new response adds extra details that, while useful, deviate slightly from the core steps outlined in the reference.",
+      "overall_score": 4.3
+    },
+    {
+      "test_id": "run-019d9399",
+      "input": "My Myslice got locked. What do I do now?",
+      "expected_route": "wiki",
+      "actual_route": "wiki",
+      "route_match": true,
+      "response_quality_score": 4,
+      "response_quality_reasoning": "The new response is well-structured and provides helpful information, but it includes a reference to a specific page that may not be directly relevant to the MySlice account issue, slightly detracting from its focus.",
+      "completeness_score": 4,
+      "completeness_reasoning": "Most key facts from the reference are covered, but the new response could have explicitly mentioned the importance of checking for unauthorized authentication methods as part of securing the account.",
+      "overall_score": 4.3
+    }
+  ]
+}

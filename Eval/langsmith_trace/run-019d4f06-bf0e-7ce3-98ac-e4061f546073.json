@@ -1,0 +1,61 @@
+{
+  "inputs": {
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "Tell me about the AI summit that's happening at Syracuse University",
+        "id": "9325419c-9ab7-4e52-aeea-384fc20b7b8d",
+        "response_metadata": {},
+        "type": "human"
+      }
+    ]
+  },
+  "outputs": {
+    "final_response": "Syracuse University is hosting its first AI Summit, organized by the United AI club. The event is scheduled for Saturday, April 25, from 1 to 5 p.m. in the K.G. Tan Auditorium at the National Veterans Resource Center. The summit aims to foster discussions around artificial intelligence by bringing together students, faculty, researchers, and industry professionals.\n\nParticipants can expect keynote addresses from leading AI organizations and SU professors, as well as panels featuring industry speakers. The event will also include live demonstrations and showcases of research and projects from students. This summit provides an excellent opportunity for networking and learning about the future of AI across various disciplines.\n\nFor more details, you can check the announcement on LinkedIn [here](https://www.linkedin.com/posts/official-uai_unitedaisummit-syracuseaisummit-summit-activity-7447424767550345216-XVL1) or visit the official event page on Syracuse University's website.",
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "Tell me about the AI summit that's happening at Syracuse University",
+        "id": "9325419c-9ab7-4e52-aeea-384fc20b7b8d",
+        "response_metadata": {},
+        "type": "human"
+      },
+      {
+        "additional_kwargs": {},
+        "content": "Syracuse University is hosting its first AI Summit, organized by the United AI club. The event is scheduled for Saturday, April 25, from 1 to 5 p.m. in the K.G. Tan Auditorium at the National Veterans Resource Center. The summit aims to foster discussions around artificial intelligence by bringing together students, faculty, researchers, and industry professionals.\n\nParticipants can expect keynote addresses from leading AI organizations and SU professors, as well as panels featuring industry speakers. The event will also include live demonstrations and showcases of research and projects from students. This summit provides an excellent opportunity for networking and learning about the future of AI across various disciplines.\n\nFor more details, you can check the announcement on LinkedIn [here](https://www.linkedin.com/posts/official-uai_unitedaisummit-syracuseaisummit-summit-activity-7447424767550345216-XVL1) or visit the official event page on Syracuse University's website.",
+        "id": "95d2c93d-17d0-443d-aa99-e1f94d228b18",
+        "invalid_tool_calls": [],
+        "response_metadata": {},
+        "tool_calls": [],
+        "type": "ai"
+      }
+    ],
+    "route": "web",
+    "route_rationale": "The question asks for current information about an event, which is best answered by searching the web for the latest details."
+  },
+  "metadata": {
+    "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com",
+    "LANGSMITH_PROJECT": "OrangeBot",
+    "LANGSMITH_TRACE_DIR": "Data/langsmith_trace",
+    "LANGSMITH_TRACE_EVAL_ENABLED": "true",
+    "LANGSMITH_TRACE_METRICS_PATH": "./reports/eval/live/metrics.jsonl",
+    "LANGSMITH_TRACING": "true",
+    "ls_run_depth": 0,
+    "revision_id": "1894884",
+    "thread_id": "14fd0054-28b8-4bad-895f-b7f287a0dbe0"
+  },
+  "langsmith": {
+    "organization": {
+      "name": "Personal",
+      "id": "edafa8a7-c206-404d-be1c-225cee85b4b4"
+    },
+    "workspace": {
+      "name": "Workspace 1",
+      "id": "9fe1b78f-fb71-4a0a-8e8f-c6a020828af6"
+    },
+    "tracing_project": {
+      "id": "86251e5b-abc3-4156-af59-ee302398b86b",
+      "name": "OrangeBot"
+    }
+  }
+}

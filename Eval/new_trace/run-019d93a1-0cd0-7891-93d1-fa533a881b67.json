@@ -1,0 +1,64 @@
+{
+  "inputs": {
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "How to add a minor in Computer Science Undergrads",
+        "id": "6fd50033-65a0-4d19-b2c7-2d3fb52533f9",
+        "response_metadata": {},
+        "type": "human"
+      }
+    ]
+  },
+  "outputs": {
+    "final_response": "To add a minor in Computer Science as an undergraduate at Syracuse University, you should follow these general steps:\n\n1. **Consult Your Academic Advisor**: It's important to discuss your interest in a minor with your academic advisor. They can help you choose a minor that complements your major and fits into your academic plan.\n\n2. **Review the Minor Requirements**: Familiarize yourself with the specific requirements for the Computer Science minor. This typically includes a set of required courses and elective courses. For example, you may need to complete a certain number of credits in elective courses from a list provided by the College of Engineering and Computer Science.\n\n3. **Declare the Minor**: You will need to fill out a Minor Declaration Form. This form is usually available through your college's academic advising office or online. \n\n4. **Plan Your Coursework**: With your advisor, plan how to incorporate the minor into your existing course schedule. Most minors can be completed without requiring additional coursework if planned early.\n\n5. **Complete the Required Courses**: Ensure you complete all the required courses for the minor as outlined by the department.\n\nFor more detailed information, you can refer to the following resources:\n- [CEE Minors](https://answers.atlassian.syr.edu/wiki/spaces/ecs/pages/156795435/CEE+Minors) for specific course requirements.\n- [Student Academic Advising Manual](https://answers.atlassian.syr.edu/wiki/spaces/falk/pages/168689679/Student+Academic+Advising+Manual) for guidance on declaring a minor.\n\nIf you have any further questions or need assistance, don't hesitate to reach out to your academic advisor or the relevant department.",
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "How to add a minor in Computer Science Undergrads",
+        "id": "6fd50033-65a0-4d19-b2c7-2d3fb52533f9",
+        "response_metadata": {},
+        "type": "human"
+      },
+      {
+        "additional_kwargs": {},
+        "content": "To add a minor in Computer Science as an undergraduate at Syracuse University, you should follow these general steps:\n\n1. **Consult Your Academic Advisor**: It's important to discuss your interest in a minor with your academic advisor. They can help you choose a minor that complements your major and fits into your academic plan.\n\n2. **Review the Minor Requirements**: Familiarize yourself with the specific requirements for the Computer Science minor. This typically includes a set of required courses and elective courses. For example, you may need to complete a certain number of credits in elective courses from a list provided by the College of Engineering and Computer Science.\n\n3. **Declare the Minor**: You will need to fill out a Minor Declaration Form. This form is usually available through your college's academic advising office or online. \n\n4. **Plan Your Coursework**: With your advisor, plan how to incorporate the minor into your existing course schedule. Most minors can be completed without requiring additional coursework if planned early.\n\n5. **Complete the Required Courses**: Ensure you complete all the required courses for the minor as outlined by the department.\n\nFor more detailed information, you can refer to the following resources:\n- [CEE Minors](https://answers.atlassian.syr.edu/wiki/spaces/ecs/pages/156795435/CEE+Minors) for specific course requirements.\n- [Student Academic Advising Manual](https://answers.atlassian.syr.edu/wiki/spaces/falk/pages/168689679/Student+Academic+Advising+Manual) for guidance on declaring a minor.\n\nIf you have any further questions or need assistance, don't hesitate to reach out to your academic advisor or the relevant department.",
+        "id": "82f43adc-ca07-4d02-8c6f-2b05de3dd78c",
+        "invalid_tool_calls": [],
+        "response_metadata": {},
+        "tool_calls": [],
+        "type": "ai"
+      }
+    ],
+    "route": "wiki",
+    "route_rationale": "The question pertains to university procedures on how to add a minor, which falls under the scope of the Answers wiki.",
+    "wiki_escalate_to_web": false,
+    "wiki_eval_reasoning": "The response clearly outlines the steps to add a minor in Computer Science for undergraduates at Syracuse University, providing specific actions to take and relevant resources for further information. It directly addresses the user's question with concrete details and citations to wiki pages for additional guidance.",
+    "wiki_hops": 1
+  },
+  "metadata": {
+    "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com",
+    "LANGSMITH_PROJECT": "OrangeBot",
+    "LANGSMITH_TRACE_DIR": "Data/langsmith_trace",
+    "LANGSMITH_TRACE_EVAL_ENABLED": "true",
+    "LANGSMITH_TRACE_METRICS_PATH": "./reports/eval/live/metrics.jsonl",
+    "LANGSMITH_TRACING": "true",
+    "ls_run_depth": 0,
+    "revision_id": "1894884",
+    "thread_id": "78797f7c-09bd-46b6-ae74-25c1a76865b6"
+  },
+  "langsmith": {
+    "organization": {
+      "name": "Personal",
+      "id": "edafa8a7-c206-404d-be1c-225cee85b4b4"
+    },
+    "workspace": {
+      "name": "Workspace 1",
+      "id": "9fe1b78f-fb71-4a0a-8e8f-c6a020828af6"
+    },
+    "tracing_project": {
+      "id": "86251e5b-abc3-4156-af59-ee302398b86b",
+      "name": "OrangeBot"
+    }
+  }
+}

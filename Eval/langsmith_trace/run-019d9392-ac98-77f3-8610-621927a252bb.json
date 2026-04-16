@@ -1,0 +1,61 @@
+{
+  "inputs": {
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "When is the next bus for Euclid loop?",
+        "id": "8266ce2a-9655-470c-8074-1823465e413a",
+        "response_metadata": {},
+        "type": "human"
+      }
+    ]
+  },
+  "outputs": {
+    "final_response": "The next bus for the Euclid Loop is scheduled to depart from College Place at 8:00 PM, arriving at the following stops:\n\n- Genesee Irving at 8:07 PM\n- Genesee Crouse at 8:08 PM\n- Genesee Westcott at 8:12 PM\n- Westcott Euclid at 8:16 PM\n- College Place at 8:25 PM\n\nSince the current time is 7:55 PM, you can catch this bus. \n\nFor the latest schedules, you can also check [here](https://parking.syr.edu/transportation/shuttle-information/campus-shuttle-schedules/).",
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "When is the next bus for Euclid loop?",
+        "id": "8266ce2a-9655-470c-8074-1823465e413a",
+        "response_metadata": {},
+        "type": "human"
+      },
+      {
+        "additional_kwargs": {},
+        "content": "The next bus for the Euclid Loop is scheduled to depart from College Place at 8:00 PM, arriving at the following stops:\n\n- Genesee Irving at 8:07 PM\n- Genesee Crouse at 8:08 PM\n- Genesee Westcott at 8:12 PM\n- Westcott Euclid at 8:16 PM\n- College Place at 8:25 PM\n\nSince the current time is 7:55 PM, you can catch this bus. \n\nFor the latest schedules, you can also check [here](https://parking.syr.edu/transportation/shuttle-information/campus-shuttle-schedules/).",
+        "id": "d6a799cb-d5dc-44bc-8c3a-8bfac011d7d7",
+        "invalid_tool_calls": [],
+        "response_metadata": {},
+        "tool_calls": [],
+        "type": "ai"
+      }
+    ],
+    "route": "transit",
+    "route_rationale": "The question specifically asks for bus schedules, which falls under transit information."
+  },
+  "metadata": {
+    "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com",
+    "LANGSMITH_PROJECT": "OrangeBot",
+    "LANGSMITH_TRACE_DIR": "Data/langsmith_trace",
+    "LANGSMITH_TRACE_EVAL_ENABLED": "true",
+    "LANGSMITH_TRACE_METRICS_PATH": "./reports/eval/live/metrics.jsonl",
+    "LANGSMITH_TRACING": "true",
+    "ls_run_depth": 0,
+    "revision_id": "1894884",
+    "thread_id": "88c926c1-50cd-4826-89bf-cfa20fb7c864"
+  },
+  "langsmith": {
+    "organization": {
+      "name": "Personal",
+      "id": "edafa8a7-c206-404d-be1c-225cee85b4b4"
+    },
+    "workspace": {
+      "name": "Workspace 1",
+      "id": "9fe1b78f-fb71-4a0a-8e8f-c6a020828af6"
+    },
+    "tracing_project": {
+      "id": "86251e5b-abc3-4156-af59-ee302398b86b",
+      "name": "OrangeBot"
+    }
+  }
+}

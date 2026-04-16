@@ -1,0 +1,61 @@
+{
+  "inputs": {
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "What are the types of Hold in MySlice",
+        "id": "2b08eaae-5e6c-408f-8c53-579fd8ecbd89",
+        "response_metadata": {},
+        "type": "human"
+      }
+    ]
+  },
+  "outputs": {
+    "final_response": "In MySlice, there are several types of holds that can be placed on a student's account, which may affect their ability to register for classes. Here are some common types of holds:\n\n1. **Advising Hold**: Requires students to meet with an academic advisor before they can register.\n2. **Financial Hold**: Prevents registration until financial obligations are met.\n3. **Health Center Hold**: Requires completion of health and immunization requirements.\n4. **Judicial Affairs Hold**: Related to disciplinary actions.\n5. **Community Standards Hold**: May be related to violations of community standards.\n6. **Immunization Hold**: Requires students to provide proof of immunizations.\n7. **Bursar Hold**: Related to outstanding financial balances.\n\nStudents are encouraged to regularly check the \"Holds\" section in MySlice to see if any holds have been applied to their account and to resolve them promptly, as holds can impact registration (source: [Early Registration for Success - Syracuse University](https://studentsuccess.syr.edu/academic-support/early-registration-for-success/)).",
+    "messages": [
+      {
+        "additional_kwargs": {},
+        "content": "What are the types of Hold in MySlice",
+        "id": "2b08eaae-5e6c-408f-8c53-579fd8ecbd89",
+        "response_metadata": {},
+        "type": "human"
+      },
+      {
+        "additional_kwargs": {},
+        "content": "In MySlice, there are several types of holds that can be placed on a student's account, which may affect their ability to register for classes. Here are some common types of holds:\n\n1. **Advising Hold**: Requires students to meet with an academic advisor before they can register.\n2. **Financial Hold**: Prevents registration until financial obligations are met.\n3. **Health Center Hold**: Requires completion of health and immunization requirements.\n4. **Judicial Affairs Hold**: Related to disciplinary actions.\n5. **Community Standards Hold**: May be related to violations of community standards.\n6. **Immunization Hold**: Requires students to provide proof of immunizations.\n7. **Bursar Hold**: Related to outstanding financial balances.\n\nStudents are encouraged to regularly check the \"Holds\" section in MySlice to see if any holds have been applied to their account and to resolve them promptly, as holds can impact registration (source: [Early Registration for Success - Syracuse University](https://studentsuccess.syr.edu/academic-support/early-registration-for-success/)).",
+        "id": "bcb3480b-1eca-4d20-ae89-41811cf21ab7",
+        "invalid_tool_calls": [],
+        "response_metadata": {},
+        "tool_calls": [],
+        "type": "ai"
+      }
+    ],
+    "route": "web",
+    "route_rationale": "The question asks for specific information about types of holds in MySlice, which is not covered by the wiki or calendar routes and requires current or detailed information."
+  },
+  "metadata": {
+    "LANGSMITH_ENDPOINT": "https://api.smith.langchain.com",
+    "LANGSMITH_PROJECT": "OrangeBot",
+    "LANGSMITH_TRACE_DIR": "Data/langsmith_trace",
+    "LANGSMITH_TRACE_EVAL_ENABLED": "true",
+    "LANGSMITH_TRACE_METRICS_PATH": "./reports/eval/live/metrics.jsonl",
+    "LANGSMITH_TRACING": "true",
+    "ls_run_depth": 0,
+    "revision_id": "1894884",
+    "thread_id": "437b2156-ec38-41d5-8fd5-2ac816eb6a08"
+  },
+  "langsmith": {
+    "organization": {
+      "name": "Personal",
+      "id": "edafa8a7-c206-404d-be1c-225cee85b4b4"
+    },
+    "workspace": {
+      "name": "Workspace 1",
+      "id": "9fe1b78f-fb71-4a0a-8e8f-c6a020828af6"
+    },
+    "tracing_project": {
+      "id": "86251e5b-abc3-4156-af59-ee302398b86b",
+      "name": "OrangeBot"
+    }
+  }
+}
