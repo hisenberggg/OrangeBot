@@ -26,7 +26,7 @@ flowchart TD
 ```
 
 - **Planner** — Classifies the question (gpt-4o-mini with structured output) and routes to exactly one of `wiki`, `calendar`, `transit`, `general`, or `web`.
-- **Web agent** — When the planner chooses `web`, runs Tavily **search** (up to 5 results) and **extract** on those URLs, then the LLM answers using the excerpts. Requires `TAVILY_API_KEY`; without it, the model is told no excerpts were returned.
+- **Web agent** — When the planner chooses `web`, first applies a lightweight LLM query-enhancement step (keeps intent, expands vague queries with relevant Syracuse context), then runs Tavily **search** (up to 5 results) and **extract** on those URLs. Requires `TAVILY_API_KEY`; without it, the model is told no excerpts were returned.
 - **Wiki agent** — ReAct agent with the `answers_retrieve` MCP tool plus an evaluation loop (up to 3 hops). Each hop is judged for whether the answer **clearly** satisfies the question; if not, the query is retried. After the third hop, if the answer is still inadequate, the graph **escalates to the same web agent** used for the `web` route (streaming shows a thinking step; stored `route` remains `wiki`). Uses pre-indexed semantic search (ChromaDB) for fast retrieval, with CQL fallback.
 - **Calendar node** — Loads all scraped academic calendar data (~300 entries) as LLM context and answers date/deadline questions.
 - **Transit node** — Loads scraped bus/shuttle schedule data (15 routes) as LLM context and answers route/time questions.

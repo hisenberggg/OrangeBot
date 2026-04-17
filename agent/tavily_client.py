@@ -8,9 +8,61 @@ import asyncio
 import logging
 from typing import Any
 
+from langchain_openai import ChatOpenAI
+from pydantic import BaseModel, Field
+
 from config import settings
 
 logger = logging.getLogger(__name__)
+
+
+QUERY_ENHANCER_PROMPT = """You improve web-search queries for Syracuse University support questions.
+
+Rules:
+- Preserve user intent exactly; do not change what they are asking.
+- If the query is vague or underspecified, add concise Syracuse context terms that improve retrieval.
+- Use relevant terms only when helpful: Syracuse, Syracuse University, MySlice, Syracuse Answers wiki.
+- If the query is already specific, keep it effectively unchanged.
+- Return JSON only.
+"""
+
+
+class QueryEnhancement(BaseModel):
+    """Structured output for optional query expansion before Tavily."""
+
+    is_vague: bool = Field(default=False, description="Whether query needs extra context")
+    enhanced_query: str = Field(default="", description="Improved query for web search")
+
+
+def _enhance_query_for_tavily(query: str) -> tuple[str, bool]:
+    """Return (query_for_search, is_vague). Falls back to original query on failure."""
+    base_query = (query or "").strip()
+    if not base_query:
+        return "", False
+
+    key = getattr(settings, "openai_api_key", "") or ""
+    if not key.strip():
+        return base_query, False
+
+    try:
+        llm = ChatOpenAI(
+            model="gpt-4o-mini",
+            api_key=key,
+            temperature=0,
+        ).with_structured_output(QueryEnhancement)
+        result = llm.invoke(
+            [
+                {"role": "system", "content": QUERY_ENHANCER_PROMPT},
+                {"role": "user", "content": f"Original query: {base_query}"},
+            ]
+        )
+        candidate = (result.enhanced_query or "").strip()
+        if not candidate:
+            return base_query, bool(result.is_vague)
+        return candidate, bool(result.is_vague)
+    except Exception as exc:
+        logger.warning("Query enhancement failed; using original query: %s", exc)
+        return base_query, False
 
 
 def _format_extract_block(url: str, title: str, body: str) -> str:
@@ -62,11 +114,19 @@ def fetch_web_context_sync(query: str) -> str:
         logger.warning("tavily-python not installed; skipping web context")
         return ""
 
+    search_query, was_vague = _enhance_query_for_tavily(query)
+    logger.info(
+        "Tavily query enhancement | vague=%s | original=%r | search=%r",
+        was_vague,
+        query,
+        search_query,
+    )
+
     try:
         client = TavilyClient(api_key=key)
-        logger.info("Tavily web search query (exact): %r", query)
+        logger.info("Tavily web search query (final): %r", search_query)
         search: dict[str, Any] = client.search(
-            query,
+            search_query,
             max_results=max_results,
             search_depth="advanced",
             timeout=60.0,
@@ -92,7 +152,7 @@ def fetch_web_context_sync(query: str) -> str:
     try:
         extracted: dict[str, Any] = client.extract(
             urls=urls,
-            query=query,
+            query=search_query,
             extract_depth="advanced",
             format="markdown",
             timeout=60.0,

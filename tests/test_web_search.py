@@ -52,3 +52,152 @@ def test_planner_graph_includes_web_node():
         g = graph.get_graph()
         assert "web" in g.nodes
         assert "web_enrich" not in g.nodes
+
+
+def test_fetch_web_context_uses_enhanced_query_for_vague_input(monkeypatch):
+    from config import settings
+    from agent import tavily_client
+
+    monkeypatch.setattr(settings, "tavily_api_key", "fake-tavily-key")
+    monkeypatch.setattr(settings, "openai_api_key", "fake-openai-key")
+
+    class _FakeStructuredLLM:
+        def invoke(self, _messages):
+            return tavily_client.QueryEnhancement(
+                is_vague=True,
+                enhanced_query="B1 hold Syracuse University MySlice",
+            )
+
+    class _FakeBaseLLM:
+        def with_structured_output(self, _schema):
+            return _FakeStructuredLLM()
+
+    class _FakeTavily:
+        last_search_query = None
+        last_extract_query = None
+
+        def __init__(self, api_key):
+            assert api_key == "fake-tavily-key"
+
+        def search(self, query, **_kwargs):
+            _FakeTavily.last_search_query = query
+            return {
+                "results": [
+                    {"url": "https://example.com/a", "title": "A", "content": "snippet"}
+                ]
+            }
+
+        def extract(self, urls, query, **_kwargs):
+            _FakeTavily.last_extract_query = query
+            return {
+                "results": [
+                    {"url": urls[0], "raw_content": "content"}
+                ]
+            }
+
+    monkeypatch.setattr(tavily_client, "ChatOpenAI", lambda **_kwargs: _FakeBaseLLM())
+    monkeypatch.setattr("tavily.TavilyClient", _FakeTavily)
+
+    out = tavily_client.fetch_web_context_sync("what is b1 hold")
+    assert out
+    assert _FakeTavily.last_search_query == "B1 hold Syracuse University MySlice"
+    assert _FakeTavily.last_extract_query == "B1 hold Syracuse University MySlice"
+
+
+def test_fetch_web_context_keeps_specific_query(monkeypatch):
+    from config import settings
+    from agent import tavily_client
+
+    original_query = "Syracuse University B1 hold meaning in MySlice"
+    monkeypatch.setattr(settings, "tavily_api_key", "fake-tavily-key")
+    monkeypatch.setattr(settings, "openai_api_key", "fake-openai-key")
+
+    class _FakeStructuredLLM:
+        def invoke(self, _messages):
+            return tavily_client.QueryEnhancement(
+                is_vague=False,
+                enhanced_query=original_query,
+            )
+
+    class _FakeBaseLLM:
+        def with_structured_output(self, _schema):
+            return _FakeStructuredLLM()
+
+    class _FakeTavily:
+        last_search_query = None
+        last_extract_query = None
+
+        def __init__(self, api_key):
+            assert api_key == "fake-tavily-key"
+
+        def search(self, query, **_kwargs):
+            _FakeTavily.last_search_query = query
+            return {
+                "results": [
+                    {"url": "https://example.com/b", "title": "B", "content": "snippet"}
+                ]
+            }
+
+        def extract(self, urls, query, **_kwargs):
+            _FakeTavily.last_extract_query = query
+            return {
+                "results": [
+                    {"url": urls[0], "raw_content": "content"}
+                ]
+            }
+
+    monkeypatch.setattr(tavily_client, "ChatOpenAI", lambda **_kwargs: _FakeBaseLLM())
+    monkeypatch.setattr("tavily.TavilyClient", _FakeTavily)
+
+    out = tavily_client.fetch_web_context_sync(original_query)
+    assert out
+    assert _FakeTavily.last_search_query == original_query
+    assert _FakeTavily.last_extract_query == original_query
+
+
+def test_fetch_web_context_enhancement_failure_falls_back(monkeypatch):
+    from config import settings
+    from agent import tavily_client
+
+    original_query = "what is b1 hold"
+    monkeypatch.setattr(settings, "tavily_api_key", "fake-tavily-key")
+    monkeypatch.setattr(settings, "openai_api_key", "fake-openai-key")
+
+    class _FakeStructuredLLM:
+        def invoke(self, _messages):
+            raise RuntimeError("llm unavailable")
+
+    class _FakeBaseLLM:
+        def with_structured_output(self, _schema):
+            return _FakeStructuredLLM()
+
+    class _FakeTavily:
+        last_search_query = None
+        last_extract_query = None
+
+        def __init__(self, api_key):
+            assert api_key == "fake-tavily-key"
+
+        def search(self, query, **_kwargs):
+            _FakeTavily.last_search_query = query
+            return {
+                "results": [
+                    {"url": "https://example.com/c", "title": "C", "content": "snippet"}
+                ]
+            }
+
+        def extract(self, urls, query, **_kwargs):
+            _FakeTavily.last_extract_query = query
+            return {
+                "results": [
+                    {"url": urls[0], "raw_content": "content"}
+                ]
+            }
+
+    monkeypatch.setattr(tavily_client, "ChatOpenAI", lambda **_kwargs: _FakeBaseLLM())
+    monkeypatch.setattr("tavily.TavilyClient", _FakeTavily)
+
+    out = tavily_client.fetch_web_context_sync(original_query)
+    assert out
+    assert _FakeTavily.last_search_query == original_query
+    assert _FakeTavily.last_extract_query == original_query
